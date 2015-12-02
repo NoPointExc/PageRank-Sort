@@ -20,10 +20,10 @@ module noc_router
  output writeOutW,
  output writeOutL, //connect to write port of destination
  output  fullE, 
- output  fullW, 
- output  fullL, 
  output   almost_fullE, 
+ output   fullW, 
  output   almost_fullW, 
+ output   fullL, 
  output   almost_fullL //full outputs from FIFOs
  );
 
