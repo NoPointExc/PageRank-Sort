@@ -1,9 +1,10 @@
-D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
+D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc_router.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc_router.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module noc
+-- Compiling module noc_router
+-- Compiling module outport
 
 Top level modules:
-	noc
+	noc_router
 
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -30,12 +31,12 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	fifo_improved
 
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module myTest
+-- Compiling module noc_tb
 -- Compiling module writer
 
 Top level modules:
-	myTest
+	noc_tb
 
 } {} {}}

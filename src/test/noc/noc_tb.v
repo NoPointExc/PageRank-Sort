@@ -14,7 +14,8 @@ wire full_00,almost_full_00,full_01,almost_full_01,full_10,almost_full_10,full_1
 noc #(16,32,5)noc1 (.clk(clk),.reset(reset),.write0(write_00),.write1(write_01),.write2(write_10),.write3(write_11),
 				.dataIn0(dataIn_00_tb),.dataIn1(dataIn_01_tb),.dataIn2(dataIn_10_tb),.dataIn3(dataIn_11_tb),
 				.dataOut0(dataOut_00_tb),.dataOut1(dataOut_01_tb),.dataOut2(dataOut_10_tb),.dataOut3(dataOut_11_tb),
-				.full0(full_00),.almost_full0(almost_full_00),.full1(full_01),.almost_full1(almost_full_01),.full2(full_10),.almost_full2(almost_full_10),.full3(full_11),.almost_full3(almost_full_11));
+				.full0(full_00),.full1(full_01),.full2(full_10),.full3(full_11),
+				.almost_full0(almost_full_00),.almost_full1(almost_full_01),.almost_full2(almost_full_10),.almost_full3(almost_full_11));
 
 
 
@@ -28,22 +29,22 @@ always
 	#(clk_prd/2) clk <= ~clk;
 
 always begin
-	#clk_prd enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
-	#clk_prd enable_00 <= 0; enable_01 <= 1; enable_10 <= 0; enable_11 <= 0;
-	#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 1; enable_11 <= 0;
-	#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 0; enable_11 <= 1;
+	//#clk_prd enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
+	//#clk_prd enable_00 <= 0; enable_01 <= 1; enable_10 <= 0; enable_11 <= 0;
+	//#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 1; enable_11 <= 0;
+	//#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 0; enable_11 <= 1;
 end
 	
 
 
 initial begin
-	
+	enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
 	clk <= 1'b1;
 	reset <= 1'b0;	
 	#3 reset <= 1'b1; 
 	#6 reset <= 1'b0;
 	
-	$monitor("CPU0 received %h, CPU1 received %h, CPU2 received %h, CPU3 received %h",dataOut_00_tb,dataOut_01_tb,dataOut_10_tb,dataOut_11_tb);
+	$monitor("CPU0 received %d, CPU1 received %d, CPU2 received %d, CPU3 received %d",dataOut_00_tb,dataOut_01_tb,dataOut_10_tb,dataOut_11_tb);
 
 end
 
@@ -63,8 +64,8 @@ always @ (posedge clk, posedge reset) begin
 		dataOut <=0;
 		write <=0;
 		count <=0;
-		//dest <= myID+1 ;
-		dest=2'b11;
+		dest <= myID+1 ;
+		//dest=2'b10;
 	end
 	else begin
 		if(enable) begin
@@ -74,10 +75,8 @@ always @ (posedge clk, posedge reset) begin
 				write <= 1'b1;
 				dataOut <= {count,myID,dest,1'b1}; 
 				count <= count + 1;
-				// if (dest == myID-1)
-				// 	dest <= myID + 1;
-				// else 
-				// 	dest <= dest + 1;
+				if (dest == myID-1)dest <= myID + 1;
+				else dest <= dest + 1;
 			end
 		end
 		else
@@ -86,4 +85,9 @@ always @ (posedge clk, posedge reset) begin
 end
 
 endmodule	
+
+
+
+
+
 

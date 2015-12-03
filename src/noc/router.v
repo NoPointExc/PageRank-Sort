@@ -1,3 +1,4 @@
+
 module noc_router 
 # (parameter  WIDTH=16,DEPTH=32,LOCAL_IP=2'b00)
 (input clk, input reset, 
@@ -218,7 +219,7 @@ reg[2:0] dst [2:0];
 //         L
 //      W -|- E    00- 01- 10- 11
 integer k;
-always @(*)begin
+always @(dataIn)begin
 		
 	for(k=0;k<3;k=k+1)begin
 		if(dataIn[k][0]!=0)begin
@@ -319,11 +320,12 @@ end
 
 //wrt_control-------------------------------------------------
 			
-always @(*)begin
+//always @(clk)begin
 	//$display("----------");
 	//$display($time,"pos=%d",pos);
 	//$display($time,"dataIn=%p",dataIn);
-end
+	//$display("%b",LOCAL_IP);
+//end
 			
 endmodule
 

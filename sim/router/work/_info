@@ -7,14 +7,14 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dD:/OneDrive/PolyCourse/AdHardwareDesign/Assignment4
+dD:/OneDrive/PolyCourse/AdHardwareDesign/Project/sim/noc
 varbiter
-Z0 !s110 1449180781
+Z0 !s110 1449180553
 !i10b 1
 !s100 5WZF3W@2NNzezWNHO@7<G1
 I5?H`dAH2=mSd7dYKB>lnJ2
 Z1 VDg1SIo80bB@j0V0VzS_@n1
-Z2 dD:/OneDrive/PolyCourse/AdHardwareDesign/Project/sim/noc
+Z2 dD:/OneDrive/PolyCourse/AdHardwareDesign/Project/sim/router
 Z3 w1449177278
 Z4 8D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
 Z5 FD:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
@@ -23,33 +23,12 @@ Z6 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z7 !s108 1449180781.000000
+Z7 !s108 1449180553.000000
 Z8 !s107 D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v|
 !s101 -O0
 !i113 1
 Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
-vcpu
-Z11 !s110 1449179364
-!i10b 1
-!s100 SdakGe=4UczN?2>acf;zV3
-IYR<5^A54THc:VJPgET0BV3
-R1
-R2
-Z12 w1449179297
-Z13 8D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v
-Z14 FD:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v
-L0 55
-R6
-r1
-!s85 0
-31
-Z15 !s108 1449179364.000000
-Z16 !s107 D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v|
-Z17 !s90 -reportprogress|300|-work|work|-stats=none|D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v|
-!s101 -O0
-!i113 1
-R10
 vfifo_improved
 R0
 !i10b 1
@@ -71,36 +50,14 @@ R7
 !s101 -O0
 !i113 1
 R10
-vmyTest
-R0
-!i10b 1
-!s100 gFEPMmcRn>7=e2JdKC04i2
-I[G7BJj>1L;:;fdINg_jhf1
-R1
-R2
-Z18 w1449179444
-Z19 8D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v
-Z20 FD:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v
-L0 7
-R6
-r1
-!s85 0
-31
-R7
-Z21 !s107 D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v|
-Z22 !s90 -reportprogress|300|-work|work|-stats=none|D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v|
-!s101 -O0
-!i113 1
-R10
-nmy@test
 vnoc
 R0
 !i10b 1
-!s100 >^ddo7n7Z9llN@PH@C>DT3
-I9<VJDOTUgL;QIQ=LQ>4ON3
+!s100 DzEKVbe1ZN3VEidz?n3681
+I]nP^fdMP<N@88dG4LWfP70
 R1
 R2
-w1449180728
+w1449179862
 8D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
 FD:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
 L0 1
@@ -136,23 +93,23 @@ R9
 !i113 1
 R10
 vnoc_tb
-R11
+Z11 !s110 1449180554
 !i10b 1
-!s100 4;<INBjhLk_g;^hR5m@lU3
-I`98N2cZ:abi?jI7S8b76_2
+!s100 R2E5FYCm]0oOf^jKdIhQQ3
+I0H]z`<BZLGA[h44CM7VO92
 R1
 R2
-R12
-R13
-R14
+Z12 w1449180547
+Z13 8D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v
+Z14 FD:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v
 L0 1
 R6
 r1
 !s85 0
 31
-R15
-R16
-R17
+R7
+Z15 !s107 D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v|
+Z16 !s90 -reportprogress|300|-work|work|-stats=none|D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v|
 !s101 -O0
 !i113 1
 R10
@@ -199,23 +156,23 @@ R7
 !i113 1
 R10
 vwriter
-R0
+R11
 !i10b 1
-!s100 m44Qo:LNCIEkm4eUBal_21
-IzOh7V6Pajm>m55fMX=h^A3
+!s100 ke1:4Y<CIIBAV8zZH:lPf1
+I^mU<B3nl6aSoGX@Ucg5W<2
 R1
 R2
-R18
-R19
-R20
-L0 66
+R12
+R13
+R14
+L0 69
 R6
 r1
 !s85 0
 31
 R7
-R21
-R22
+R15
+R16
 !s101 -O0
 !i113 1
 R10

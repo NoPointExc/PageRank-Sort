@@ -9,12 +9,26 @@ wire [15:0] dataOutE, dataOutW, dataOutL;
 wire fullE, fullW, fullL;
 wire almost_fullE, almost_fullW, almost_fullL;
 
+wire  writeOutE;
+wire writeOutW;
+wire  writeOutL; //connect to write port of destination
 
-noc_router noc1 (clk, reset,  
+wire readFullE;
+wire readFullW;
+wire readFullL; //read full ports of destination
+wire read_almostfullE;
+wire read_almostfullW;
+wire read_almostfullL;//read almost_full port of destination
+
+noc_router #(16,32,2'b10) noc1 (clk, reset,  
           writeE, writeW, writeL, //write ports
+          readFullE,readFullW,readFullL,
+          read_almostfullE,read_almostfullW,read_almostfullL,
           dataInE, dataInW, dataInL, //write data ports
           dataOutE, dataOutW, dataOutL, //output ports
-          fullE, almost_fullE, fullW, almost_fullW, fullL, almost_fullL //full outputs from FIFOs
+          writeOutE,writeOutW,writeOutL,
+          fullE,  fullW,  fullL, 
+          almost_fullE,almost_fullW,almost_fullL //full outputs from FIFOs
 );
 
 
@@ -68,7 +82,7 @@ always @ (posedge clk, posedge reset) begin
 			write <=1'b0;
 		else begin
 			write <= 1'b1;
-			dataOut <= {count,id,2'b01,1'b1}; //write to the WEST port
+			dataOut <= {count,id,2'b11,1'b1}; //write to the WEST port
 			count <= count + 1;
 		end 
 	end

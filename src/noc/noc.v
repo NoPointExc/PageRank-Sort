@@ -109,11 +109,11 @@ assign dataOut3=dataOutL[3];
 
 
 
-
 generate
 	genvar i;
-	for(i=0;i<4;i=i+1)begin
-		noc_router  #(WIDTH,DEPTH,2'b00) router (clk,reset,
+
+	for(i=2'b00;i<2;i=i+1)begin
+		noc_router  #(WIDTH,DEPTH,i) router (clk,reset,
 			writeE[i],writeW[i],writeL[i],//write ports
 			read_FullE[i],read_FullW[i],read_FullL[i],//destination port is full
 			read_almostFullE[i],read_almostFullW[i],read_almostFullL[i],//destination port is almost full
@@ -128,12 +128,15 @@ generate
 
 endgenerate
 
+
+//         L
+//      W -|- E    00- 01- 10- 11
 integer j,next,last;
 
 always @(*)begin
-	for(j=0;j<4;j=j+1)begin
+	for(j=0;j<2;j=j+1)begin
 		next=j+1;
-		if(next==4) next=0;
+		if(j==3) next=0;
 		last=j-1;
 		if(j==0) last=3;
 		writeE[j]=writeOutW[next];
@@ -148,5 +151,18 @@ always @(*)begin
 	end
 end
 
+integer k,h;
+always @(posedge clk)begin
+	$display($time,"--------------------");
+	for(k=0;k<4;k=k+1)begin
+	$display("datainL[%d]=%d,dataInE[%d]=%d,dataInW[%d]=%d",k,datainL[k],k,dataInE[k],k,dataInW[k]);
+				
+	end
+
+	for(h=0;h<4;h=h+1)begin
+	$display("dataOutE[%d]=%d,dataOutW[%d]=%d,dataOutL[%d]=%d",h,dataOutE[h],h,dataOutW[h],h,dataOutL[h]);	
+	end
+
+end
 
 endmodule

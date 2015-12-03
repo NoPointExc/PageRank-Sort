@@ -20,10 +20,14 @@ noc #(16,32,5)net
   write0, write1, write2,write3, //write ports
  dataIn0, dataIn1,  dataIn2,dataIn3, //write data ports
   dataOut0,dataOut1, dataOut2, dataOut3, //output ports
- full0, almost_full0, 
- full1, almost_full1, 
- full2, almost_full2,
- full3, almost_full3 //full outputs from FIFOs
+ full0,  
+ full1,  
+ full2, 
+ full3, //full outputs from FIFOs
+almost_full0,
+almost_full1,
+almost_full2,
+almost_full3 
  );
 
 //dataIn, write data in net and is the output of writer
