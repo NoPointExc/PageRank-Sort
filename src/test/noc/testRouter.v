@@ -51,14 +51,16 @@ initial begin
 	disableW<=0;
 	disableL<=0;
 	toE<=2'b00;
-	toW<=2'b10;
-	toL<=2'b11;
+	toW<=2'b00;
+	toL<=2'b01;
 
 	#1 reset <= 1'b1; 
 	#3 reset <= 1'b0;
 	//#300 disableE<=1;
 	
-	#100 disableW<=0;
+	#100 disableE<=1;
+	disableW<=1;
+	disableL<=1;
 
 end
 

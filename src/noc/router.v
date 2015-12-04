@@ -28,6 +28,14 @@ module noc_router
  output   almost_fullL //full outputs from FIFOs
  );
 
+//always @(clk)begin
+	// $display("----------");
+	// $display($time,"pos=%d",pos);
+	// $display($time,"dataIn=%p",dataIn);
+	// $display("%b",LOCAL_IP);
+	//$display("writeOutE_temp=%d,writeOutW_temp=%d,writeOutL_temp=%d",writeOutE_temp,writeOutW_temp,writeOutL_temp);
+//end
+
 parameter ADDWIDTH = $clog2(DEPTH);
 
 wire readE, readW, readL; //output from arbiter, input to FIFO
@@ -118,6 +126,14 @@ reg wrt_ableE,wrt_ableW,wrt_ableL; //write able signal
 wire hasOutE, hasOutW, hasOutL;  //outport has value to output
 reg [2:0] isBlock;                //port is block (outputing or cant' write to next router)
 
+
+// always @(clk)begin
+	// $display("----------");
+	// $display($time,"pos=%d",pos);
+	// $display($time,"dataIn=%p",dataIn);
+	// $display("%b",LOCAL_IP);
+// 	$display("writeE=%d,writeW=%d,writeL=%d",writeE,writeW,writeL);
+// end
 //generates data at the dataInFifo* ports
 always @ (posedge clk, posedge reset) begin
 
@@ -179,11 +195,9 @@ always @ (posedge clk, posedge reset) begin
 end 
 
 always @ (*) begin
-
 	dataIn[0] = retainPrevE? dataInPrevE: dataInFifoE;
 	dataIn[1] = retainPrevW? dataInPrevW: dataInFifoW;
 	dataIn[2] = retainPrevL? dataInPrevL: dataInFifoL;
-
 end
 
 
@@ -239,7 +253,10 @@ always@(*)begin
 	portBusy=isBlock;
 	granted=3'b0;
 	retain=3'b0;
-	//genertate proprity
+	//genertate proprity,output dataout_temp
+	dataOutE_temp=16'bx;
+	dataOutW_temp=16'bx;
+	dataOutL_temp=16'bx;
 	for(i=0;i<3;i=i+1)begin
 		pos=i+token;
 		if(pos>2) pos=pos-3;
@@ -260,7 +277,10 @@ always@(*)begin
 				granted[pos]=1;
 			end
 
-			if(granted[pos]==0) retain[pos]=1;
+			if(granted[pos]==0) begin
+				retain[pos]=1;
+			end 
+
 		end
 	end
 end
@@ -269,9 +289,9 @@ end
 
 //write control--------------------------------
 //detect output has data or not
-assign hasOutE= dataOutE_temp[0] & (~writeE);
-assign hasOutW= dataOutW_temp[0] & (~writeW);
-assign hasOutL= dataOutL_temp[0] & (~writeL);
+assign hasOutE= dataOutE_temp[0] ;
+assign hasOutW= dataOutW_temp[0] ;
+assign hasOutL= dataOutL_temp[0] ;
 
 //control wrt_ables
 always @(posedge clk or posedge reset) begin
@@ -299,9 +319,13 @@ always @(posedge clk or posedge reset) begin
 end
 
 always @ (*) begin
-	writeE = wrt_ableE & (hasOutE);
-	writeW = wrt_ableW & (hasOutW);
-	writeL = wrt_ableL & (hasOutL);
+	if(wrt_ableE & hasOutE)writeE=1;
+	else writeE=0;
+	if(wrt_ableW & hasOutW) writeW=1;
+	else writeW=0;
+	if(wrt_ableL & hasOutL) writeL=1;
+	else writeL=0;
+
 end
 
 
@@ -320,11 +344,14 @@ end
 
 //wrt_control-------------------------------------------------
 			
-//always @(clk)begin
-	//$display("----------");
-	//$display($time,"pos=%d",pos);
-	//$display($time,"dataIn=%p",dataIn);
-	//$display("%b",LOCAL_IP);
+//always @(*)begin
+	// $display("----------");
+	// $display($time,"pos=%d",pos);
+	// $display($time,"dataIn=%p",dataIn);
+	// $display("%b",LOCAL_IP);
+	//$display("writeE=%d,writeW=%d,writeL=%d",writeE,writeW,writeL);
+	//$display("wrt_ableE=%d,wrt_ableW=%d,wrt_ableL=%d",wrt_ableE,wrt_ableW,wrt_ableL);
+	//$display("hasOutE=%d,hasOutW=%d,hasOutL=%d",hasOutE,hasOutW,hasOutL);
 //end
 			
 endmodule

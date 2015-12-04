@@ -1,26 +1,16 @@
-D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module testRouter
--- Compiling module writer
-
-Top level modules:
-	testRouter
-
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v
+D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module regfile
 
 Top level modules:
 	regfile
 
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module noc_router
--- Compiling module outport
--- Compiling module arbiter
+-- Compiling module noc
 
 Top level modules:
-	noc_router
+	noc
 
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -28,5 +18,16 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	fifo_improved
+
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v {2 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module noc_router
+-- Compiling module outport
+-- Compiling module arbiter
+** Warning: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v(263): (vlog-2182) 'dataIn' might be read before written in always_comb or always @* block.
+
+
+Top level modules:
+	noc_router
 
 } {} {}}

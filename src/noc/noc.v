@@ -112,7 +112,7 @@ assign dataOut3=dataOutL[3];
 generate
 	genvar i;
 
-	for(i=0;i<2;i=i+1)begin
+	for(i=2'b00;i<4;i=i+1)begin
 		noc_router  #(WIDTH,DEPTH,i) router (clk,reset,
 			writeE[i],writeW[i],writeL[i],//write ports
 			read_FullE[i],read_FullW[i],read_FullL[i],//destination port is full
@@ -134,11 +134,11 @@ endgenerate
 integer j,next,last;
 
 always @(*)begin
-	for(j=0;j<2;j=j+1)begin
+	for(j=0;j<4;j=j+1)begin
 		next=j+1;
-		if(j==1) next=0;
+		if(j==3) next=0;
 		last=j-1;
-		if(j==0) last=1;
+		if(j==0) last=3;
 		writeE[j]=writeOutW[next];
 		read_FullE[j]=fullW[next];
 		read_almostFullE[j]=almost_fullW[next];

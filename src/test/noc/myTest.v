@@ -47,15 +47,17 @@ initial begin
 	disable1<=0;
 	disable2<=0;
 	disable3<=0;
-	to0<=2'b10;
+	to0<=2'b01;
 	to1<=2'b10;
-	to2<=2'b10;
-	to3<=2'b10;
+	to2<=2'b11;
+	to3<=2'b00;
 
 	#1 reset <= 1'b1; 
 	#3 reset <= 1'b0;
-	//#300 disableE<=1;	
-
+	#300 disable0<=1;	
+	#100 disable1<=1;
+	#100 disable2<=1;
+	#100 disable3<=1;
 end
 
 

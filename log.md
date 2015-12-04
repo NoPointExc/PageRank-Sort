@@ -15,10 +15,16 @@
 
 noc doesn't work. freezing/
 
+12/04/2015  01:23 PM
 --------------------
 1)fixed bug, noc_tb.v
 
 empty alway, cased fezzing
 
-2)noc, wirteOut and Write signals seems no output
+2)noc, wirteOut and Write signals seems no output.
+ fixed. Reason: forget to reset the output data.
+ fixed by reset output data every time.
+
+
+
 

@@ -65,7 +65,7 @@ wire almost_fullE1, almost_fullW1, almost_fullL1;
 wire almost_fullE2, almost_fullW2, almost_fullL2;
 wire almost_fullE3, almost_fullW3, almost_fullL3;
 
-always @(*) begin
+//always @(*) begin
      //$display($time,": writeL0=%d",writeL0);
      //$display($time,": writeE0=%d,writeW0=%d,writeL0=%d ",writeE0,writeW0,writeL0);
      //$display($time,": dataIn0=%b,dataIn1=%d,dataIn2=%d,dataIn3=%d",dataIn0,dataIn1,dataIn2,dataIn3);
@@ -75,7 +75,7 @@ always @(*) begin
      //$display($time,": writeW2=%d", writeW2);
      $display($time," writeOutE0=%d, writeOutW0=%d, writeOutL0=%d", writeOutE0, writeOutW0, writeOutL0);
      $display($time," writeE1=%d, writeW1=%d, writeL1=%d", writeE1, writeW1, writeL1);
-end
+//end
 
 
 noc_router #(WIDTH,DEPTH,2'b00) router0 (clk, reset,  
