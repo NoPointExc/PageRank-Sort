@@ -1,10 +1,10 @@
-D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc_router.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc_router.v
+D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module noc_router
--- Compiling module outport
+-- Compiling module testRouter
+-- Compiling module writer
 
 Top level modules:
-	noc_router
+	testRouter
 
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
@@ -13,13 +13,11 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	regfile
 
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v {2 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module noc_router
 -- Compiling module outport
 -- Compiling module arbiter
-** Warning: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v(222): (vlog-2256) Event expressions should result in a singular type.
-
 
 Top level modules:
 	noc_router
@@ -30,13 +28,5 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	fifo_improved
-
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/router_test.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module noc_tb
--- Compiling module writer
-
-Top level modules:
-	noc_tb
 
 } {} {}}

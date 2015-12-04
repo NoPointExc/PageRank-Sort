@@ -97,22 +97,12 @@ assign dataOut1=dataOutL[1];
 assign dataOut2=dataOutL[2];
 assign dataOut3=dataOutL[3];
 //topology
-/**
- * router 0 ------2+1------router 1
- * |                         |
- * |2                        |2
- * |+                        |+
- * |1                        |1
- * |                         |
- * router 3-------2+1-------router 2
- */
-
-
-
+//router 0 ------2+1------router 1
+		
 generate
 	genvar i;
 
-	for(i=0;i<2;i=i+1)begin
+	for(i=2'b00;i<2;i=i+1)begin
 		noc_router  #(WIDTH,DEPTH,i) router (clk,reset,
 			writeE[i],writeW[i],writeL[i],//write ports
 			read_FullE[i],read_FullW[i],read_FullL[i],//destination port is full
@@ -129,8 +119,6 @@ generate
 endgenerate
 
 
-//         L
-//      W -|- E    00- 01- 10- 11
 integer j,next,last;
 
 always @(*)begin
@@ -151,18 +139,18 @@ always @(*)begin
 	end
 end
 
-integer k,h;
-always @(posedge clk)begin
-	$display($time,"--------------------");
-	for(k=0;k<4;k=k+1)begin
-	//$display("datainL[%d]=%d,dataInE[%d]=%d,dataInW[%d]=%d",k,datainL[k],k,dataInE[k],k,dataInW[k]);
-	$display("writeE[%d]=%d,writeW[%d]=%d,writeOutE[%d]=%d,writeOutW[%d]=%d",k,writeE[k],k,writeW[k],k,writeOutE[k],k,writeOutW[k]);		
-	end
+//integer k,h;
+// always @(posedge clk)begin
+// 	$display($time,"--------------------");
+// 	for(k=0;k<4;k=k+1)begin
+// 	$display("datainL[%d]=%d,dataInE[%d]=%d,dataInW[%d]=%d",k,datainL[k],k,dataInE[k],k,dataInW[k]);
+				
+// 	end
 
-	// for(h=0;h<4;h=h+1)begin
-	// $display("dataOutE[%d]=%d,dataOutW[%d]=%d,dataOutL[%d]=%d",h,dataOutE[h],h,dataOutW[h],h,dataOutL[h]);	
-	// end
+// 	for(h=0;h<4;h=h+1)begin
+// 	$display("dataOutE[%d]=%d,dataOutW[%d]=%d,dataOutL[%d]=%d",h,dataOutE[h],h,dataOutW[h],h,dataOutL[h]);	
+// 	end
 
-end
+// end
 
 endmodule

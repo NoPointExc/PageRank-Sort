@@ -29,8 +29,8 @@ always
 	#(clk_prd/2) clk <= ~clk;
 
 always begin
-	//#clk_prd enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
-	//#clk_prd enable_00 <= 0; enable_01 <= 1; enable_10 <= 0; enable_11 <= 0;
+	#clk_prd enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
+	#clk_prd enable_00 <= 0; enable_01 <= 1; enable_10 <= 0; enable_11 <= 0;
 	//#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 1; enable_11 <= 0;
 	//#clk_prd enable_00 <= 0; enable_01 <= 0; enable_10 <= 0; enable_11 <= 1;
 end
@@ -38,7 +38,7 @@ end
 
 
 initial begin
-	enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
+	//enable_00 <= 1; enable_01 <= 0; enable_10 <= 0; enable_11 <= 0;
 	clk <= 1'b1;
 	reset <= 1'b0;	
 	#3 reset <= 1'b1; 
@@ -72,10 +72,11 @@ always @ (posedge clk, posedge reset) begin
 			if ((write & almost_full)|(~write & full)) 
 				write <=1'b0;
 			else begin
+
 				write <= 1'b1;
 				dataOut <= {count,myID,dest,1'b1}; 
 				count <= count + 1;
-				if (dest == myID-1)dest <= myID + 1;
+				if (dest == myID-1) dest <= myID + 1;
 				else dest <= dest + 1;
 			end
 		end

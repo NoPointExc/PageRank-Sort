@@ -219,7 +219,7 @@ reg[2:0] dst [2:0];
 //         L
 //      W -|- E    00- 01- 10- 11
 integer k;
-always @(dataIn)begin
+always @(dataIn[0],dataIn[1],dataIn[2])begin
 		
 	for(k=0;k<3;k=k+1)begin
 		if(dataIn[k][0]!=0)begin

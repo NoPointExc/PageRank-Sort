@@ -3,12 +3,27 @@
 # Loading project router_test
 # Compile of fifo_improved.v was successful.
 # Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
 # Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-vsim -gui work.noc_tb
+# Compile of router.v was successful.
+# 4 compiles, 2 failed with no errors.
+# could not find interpreter "ScintillaTk"
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router.v was successful.
+# 4 compiles, 1 failed with no errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router.v was successful.
+# 4 compiles, 1 failed with no errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router.v was successful.
+# Compile of testRouter.v was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.testRouter
 # //  ModelSim PE Student Edition 10.4a Apr  7 2015 
 # //
 # //  Copyright 1991-2015 Mentor Graphics Corporation
@@ -28,145 +43,23 @@ vsim -gui work.noc_tb
 # // FOR HIGHER EDUCATION PURPOSES ONLY
 # //
 # vsim -gui D:\OneDrive\PolyCourse\AdHardwareDesign\Project\sim\router\router_test.mpf 
-# Start time: 17:02:00 on Dec 03,2015
-# Loading work.noc_tb
+# Start time: 10:08:30 on Dec 04,2015
+# Loading work.testRouter
+# Loading work.writer
 # Loading work.noc_router
 # Loading work.fifo_improved
 # Loading work.regfile
 # Loading work.arbiter
 # Loading work.outport
-# Loading work.writer
-add wave -position insertpoint sim:/noc_tb/*
 run
+run
+add wave -position insertpoint sim:/testRouter/*
 # Compile of fifo_improved.v was successful.
 # Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
 # Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
+# Compile of router.v was successful.
+# Compile of testRouter.v was successful.
+# 5 compiles, 0 failed with no errors.
 run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-restart -f
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# Compile of fifo_improved.v was successful.
-# Compile of noc.v was successful.
-# Compile of noc_router.v was successful.
-# Compile of ram.v was successful.
-# Compile of router.v was successful with warnings.
-# Compile of router_test.v was successful.
-# 6 compiles, 0 failed with no errors.
-restart -f
-# Loading work.noc_tb
-# Loading work.noc_router
-# Loading work.fifo_improved
-# Loading work.regfile
-# Loading work.arbiter
-# Loading work.outport
-# Loading work.writer
-run
-# End time: 17:12:17 on Dec 03,2015, Elapsed time: 0:10:17
+# End time: 10:09:25 on Dec 04,2015, Elapsed time: 0:00:55
 # Errors: 0, Warnings: 0

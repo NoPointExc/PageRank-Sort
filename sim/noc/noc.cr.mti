@@ -5,6 +5,14 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	noc
 
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/noc_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module noc_tb
+-- Compiling module cpu
+
+Top level modules:
+	noc_tb
+
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/ram.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module regfile
@@ -12,30 +20,11 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	regfile
 
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v {2 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module noc_router
--- Compiling module outport
--- Compiling module arbiter
-** Warning: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router.v(222): (vlog-2256) Event expressions should result in a singular type.
-
-
-Top level modules:
-	noc_router
-
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module fifo_improved
 
 Top level modules:
 	fifo_improved
-
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module myTest
--- Compiling module writer
-
-Top level modules:
-	myTest
 
 } {} {}}
