@@ -106,6 +106,10 @@ always@(page,reset)begin
 				temp =  nodeWeight_db[k] * nodeVal[k];
 				nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH];				
 			end
+			if(adj[page][k+1]==1'b1 && (k+1)!=page) begin  //can't update yourself with yourself
+				temp =  nodeWeight_db[k+1] * nodeVal[k+1];
+				nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH]; 				
+			end
 		end
 	end
 end

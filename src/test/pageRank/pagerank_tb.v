@@ -20,7 +20,7 @@ wire [WIDTH-1:0] node0Val;
 
 pageRank  #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
 
-integer i;
+integer i,j;
 initial begin
 	reset = 1'b0;
 
@@ -30,33 +30,54 @@ initial begin
 	#1 reset = 1'b1;
 
 
+	//adj 8
+	//0 1 2 3 4 5 6 7
+	//0 0 0 0 0 0 0 0
+	//0 0 0 0 0 1 0 0
+	//0 0 0 1 0 0 0 0
+	//1 0 0 0 0 0 0 0
+	//1 0 1 0 0 0 0 0
+	//0 0 1 0 0 0 0 0
+	//0 0 0 0 0 0 0 0
+	//0 0 0 0 0 0 0 1
 	
+
+
+	for(j=0;j<N*N;j=j+1)begin
+		adj[i]=0;
+	end
+	//adj 8
+	// adj[13]=1;
+	// adj[19]=1;
+	// adj[24]=1;
+	// adj[32]=1;
+	// adj[34]=1;
+	// adj[42]=1;
+	// adj[63]=1;
+
+	
+	//adj 16
+	adj[45]=1'b1;
+	adj[46]=1'b1;
+	adj[75]=1'b1;
+	adj[81]=1'b1;
+	adj[96]=1'b1;
+	adj[113]=1'b1;
+	adj[129]=1'b1;
+	adj[131]=1'b1;
+	adj[132]=1'b1;
+	adj[137]=1'b1;
+	adj[138]=1'b1;
+	adj[140]=1'b1;
+	adj[230]=1'b1;
+	adj[245]=1'b1;
+
 	for(i=0;i<16;i=i+1)begin
-		//Adjaceny matrix
-		// 0 0 1 1
-		// 1 0 0 0
-		// 1 1 0 1
-		// 1 1 0 0
-		adj[0+i*16] = 1'b0; 
-		adj[1+i*16] = 1'b0; 
-		adj[2+i*16] = 1'b1; 
-		adj[3+i*16] = 1'b1;
-		adj[4+i*16] = 1'b1; 
-		adj[5+i*16] = 1'b0; 
-		adj[6+i*16] = 1'b0; 
-		adj[7+i*16] = 1'b0;
-		adj[8+i*16] = 1'b1; 
-		adj[9+i*16] = 1'b1; 
-		adj[10+i*16] = 1'b0; 
-		adj[11+i*16] = 1'b1;
-		adj[12+i*16] = 1'b1; 
-		adj[13+i*16] = 1'b1; 
-		adj[14+i*16] = 1'b0; 
-		adj[15+i*16] = 1'b0;
 
 		//Node weights 
 		// 0.33, 0.5, 1, 0.5
 		// 16'h5555 , 16'h8000 , 16'hFFFF, 16'h8000 
+		//21845, 32768, 65535, 32768
 		nodeWeight[WIDTH-1:0] =  16'h5555;
 		nodeWeight[2*WIDTH-1:WIDTH] =  16'h8000;
 		nodeWeight[3*WIDTH-1:2*WIDTH] =  16'hffff;

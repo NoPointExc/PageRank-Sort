@@ -15,9 +15,10 @@ output reg [WIDTH-1:0] node0Val);
 //All values are in the range [0,(2^16-1)/2^16]. 
 // For example, the 16 bit value 2'h11 corresponds to (2^16-1)/2^16.
 
+localparam base=17'h10000;
 localparam d = 16'h2666;   //d = 0.15
-localparam dn = 16'h099a; // d/N : NOTE --- please update based on N
-localparam db = 16'hd99a; //1-d: NOTE: --- please update based on d 
+localparam dn = d/N; // d/N : NOTE --- please update based on N
+localparam db = base-d; //1-d: NOTE: --- please update based on d 
 
 reg [WIDTH-1:0] nodeVal [N-1:0]; //value of each node
 reg [WIDTH-1:0] nodeVal_next [N-1:0]; //next state node value
