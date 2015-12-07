@@ -344,7 +344,15 @@ end
 
 //wrt_control-------------------------------------------------
 			
-
+//always @(*)begin
+	// $display("----------");
+	// $display($time,"pos=%d",pos);
+	// $display($time,"dataIn=%p",dataIn);
+	// $display("%b",LOCAL_IP);
+	//$display("writeE=%d,writeW=%d,writeL=%d",writeE,writeW,writeL);
+	//$display("wrt_ableE=%d,wrt_ableW=%d,wrt_ableL=%d",wrt_ableE,wrt_ableW,wrt_ableL);
+	//$display("hasOutE=%d,hasOutW=%d,hasOutL=%d",hasOutE,hasOutW,hasOutL);
+//end
 			
 endmodule
 

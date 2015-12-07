@@ -9,7 +9,7 @@ reg clk, reset;
 wire write0,write1,write2,write3;
 reg disable0,disable1,disable2,disable3;
 
-reg[1:0] to0,to1,to2,to3;
+reg[3:0] to0,to1,to2,to3;
 wire almost_full0,almost_full1,almost_full2,almost_full3;
 wire full0,full1,full2,full3;
 
@@ -47,10 +47,10 @@ initial begin
 	disable1<=0;
 	disable2<=0;
 	disable3<=0;
-	to0<=2'b01;
-	to1<=2'b10;
-	to2<=2'b11;
-	to3<=2'b00;
+	to0<=4'b0101;
+	to1<=4'b1000;
+	to2<=4'b1000;
+	to3<=4'b1010;
 
 	#1 reset <= 1'b1; 
 	#3 reset <= 1'b0;
@@ -65,7 +65,7 @@ end
 endmodule
 
 
-module writer (input clk, input reset, input full, input almost_full, input [1:0] id, input [1:0] to, input disableme, output reg [15:0] dataOut, output reg write);
+module writer (input clk, input reset, input full, input almost_full, input [1:0] id, input [3:0] to, input disableme, output reg [15:0] dataOut, output reg write);
 //dataOut from writer is dataIn for fifo
 //[disableme] disable =1, do not write. 
 reg [10:0] count;

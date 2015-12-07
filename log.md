@@ -52,3 +52,16 @@ router 4 bit IP
 # 0,          3,0001
 
 
+2) router multicast feature added and passed.
+.router can mulitcast message. (copy and forge)
+.ticket cosuming routing: when message routing to local, the destination bit will be reset
+package formate
+
+|----DATA----|address|valid|
+|------------|-4bits-|1 bit|
+
+address formate: 1111, muliticast to 0,1,2,3
+address formate: 0011, muliticast to 0,1
+reserved address:0000, will be droped.
+
+valid bit: 0=invalid, 1=valid

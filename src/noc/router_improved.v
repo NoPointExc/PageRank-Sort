@@ -10,12 +10,12 @@ module noc_router
  input read_almostfullE,
  input read_almostfullW,
  input read_almostfullL, //read almost_full port of destination
- input [15:0] dataInE, 
- input [15:0] dataInW, 
- input [15:0] dataInL, //write data ports
- output  [15:0] dataOutE,
- output  [15:0] dataOutW,
- output  [15:0] dataOutL, //output ports
+ input [WIDTH-1:0] dataInE, 
+ input [WIDTH-1:0] dataInW, 
+ input [WIDTH-1:0] dataInL, //write data ports
+ output  [WIDTH-1:0] dataOutE,
+ output  [WIDTH-1:0] dataOutW,
+ output  [WIDTH-1:0] dataOutL, //output ports
  output writeOutE,
  output writeOutW,
  output writeOutL, //connect to write port of destination
@@ -31,16 +31,17 @@ parameter ADDWIDTH = $clog2(DEPTH);
 
 
 
+
 wire readE, readW, readL; //output from arbiter, input to FIFO
-wire [15:0] dataOutFifoE, dataOutFifoW, dataOutFifoL; //output from FIFO, input to arbiter
+wire [WIDTH-1:0] dataOutFifoE, dataOutFifoW, dataOutFifoL; //output from FIFO, input to arbiter
 wire emptyE, almost_emptyE, emptyW, almost_emptyW, emptyL, almost_emptyL; //output from FIFO, input to arbiter
-wire [15:0] dataOutE_temp, dataOutW_temp, dataOutL_temp; //output from arbiter, input to outport 
+wire [WIDTH-1:0] dataOutE_temp, dataOutW_temp, dataOutL_temp; //output from arbiter, input to outport 
 
-fifo_improved fifoE (clk,  reset,  writeE,  readE, dataInE, dataOutFifoE, fullE, almost_fullE, emptyE, almost_emptyE);
+fifo_improved #(WIDTH,DEPTH,ADDWIDTH) fifoE (clk,  reset,  writeE,  readE, dataInE, dataOutFifoE, fullE, almost_fullE, emptyE, almost_emptyE);
 
-fifo_improved fifoW (clk,  reset,  writeW,  readW, dataInW, dataOutFifoW, fullW, almost_fullW, emptyW, almost_emptyW);
+fifo_improved #(WIDTH,DEPTH,ADDWIDTH) fifoW (clk,  reset,  writeW,  readW, dataInW, dataOutFifoW, fullW, almost_fullW, emptyW, almost_emptyW);
 
-fifo_improved fifoL (clk,  reset,  writeL,  readL, dataInL, dataOutFifoL, fullL, almost_fullL, emptyL, almost_emptyL);
+fifo_improved #(WIDTH,DEPTH,ADDWIDTH) fifoL (clk,  reset,  writeL,  readL, dataInL, dataOutFifoL, fullL, almost_fullL, emptyL, almost_emptyL);
 
 arbiter #(WIDTH,LOCAL_IP) a(clk, reset, emptyE, almost_emptyE, dataOutFifoE, 
                       emptyW, almost_emptyW, dataOutFifoW,  
@@ -52,7 +53,7 @@ arbiter #(WIDTH,LOCAL_IP) a(clk, reset, emptyE, almost_emptyE, dataOutFifoE,
 		      dataOutE_temp, dataOutW_temp, dataOutL_temp); 
 
  
-outport o(clk, reset, 
+outport #(WIDTH,LOCAL_IP) o(clk, reset, 
 		dataOutE_temp, dataOutW_temp, dataOutL_temp,
 		writeOutE_temp,writeOutW_temp,writeOutL_temp,
 		dataOutE, dataOutW, dataOutL,
@@ -61,29 +62,34 @@ outport o(clk, reset,
 
 endmodule
 
-module outport # (parameter  WIDTH=16) (input clk, input reset, 
+module outport # (parameter  WIDTH=16,LOCAL_IP=2'b00) (input clk, input reset, 
 	       input [WIDTH-1:0] dataOutE_temp, input [WIDTH-1:0] dataOutW_temp, input [WIDTH-1:0] dataOutL_temp,
 	       input writeOutE_temp, input writeOutW_temp,input writeOutL_temp,
 	       output reg [WIDTH-1:0] dataOutE, output reg [WIDTH-1:0] dataOutW, output reg [WIDTH-1:0] dataOutL,
 	       output reg writeOutE,output reg writeOutW,output reg writeOutL
 	       );
-
+	
 	always @ (posedge clk, posedge reset)begin
 		if (reset) begin
-			dataOutE <= 0;
-			dataOutW <= 0;
-			dataOutL <= 0;
-			writeOutE<=0;
-			writeOutW<=0;
-			writeOutL<=0;
+			dataOutE = 0;
+			dataOutW = 0;
+			dataOutL = 0;
+			writeOutE=0;
+			writeOutW=0;
+			writeOutL=0;
 		end
-		else begin
-				dataOutE <= dataOutE_temp;
-		        dataOutW <= dataOutW_temp;
-	            dataOutL <= dataOutL_temp;
-	            writeOutE<=writeOutE_temp;
-				writeOutW<=writeOutW_temp;
-				writeOutL<=writeOutL_temp;
+		else begin				
+				dataOutE = dataOutE_temp;
+		        dataOutW = dataOutW_temp;
+	            dataOutL = dataOutL_temp;
+
+	            dataOutE[LOCAL_IP+1]=1'b0;
+				dataOutW[LOCAL_IP+1]=1'b0;
+				dataOutL[LOCAL_IP+1]=1'b0;
+
+	            writeOutE=writeOutE_temp;
+				writeOutW=writeOutW_temp;
+				writeOutL=writeOutL_temp;
 		end		
 	end
 
@@ -92,23 +98,23 @@ endmodule
 
 //this one does not dequeue items that are not transmitted
 module arbiter  #(parameter WIDTH=16,LOCAL_IP=2'b00) (input clk, input reset, 
-	    input emptyE, input almost_emptyE, input [15:0] dataInFifoE,
-		input emptyW, input almost_emptyW, input [15:0] dataInFifoW,
-		input emptyL, input almost_emptyL, input [15:0] dataInFifoL,
+	    input emptyE, input almost_emptyE, input [WIDTH-1:0] dataInFifoE,
+		input emptyW, input almost_emptyW, input [WIDTH-1:0] dataInFifoW,
+		input emptyL, input almost_emptyL, input [WIDTH-1:0] dataInFifoL,
 		input readFullE,input readFullW,input readFullL,     //read full ports of destination
        	input read_almostfullE,input read_almostfullW,input read_almostfullL, //read almost_full port of destination
        	output reg writeE,output reg writeW,output reg writeL,   //connect to write port of destination
 		output reg readE, output reg readW, output reg readL,
-		output reg [15:0] dataOutE_temp, output reg [15:0] dataOutW_temp, output reg [15:0] dataOutL_temp);
+		output reg [WIDTH-1:0] dataOutE_temp, output reg [WIDTH-1:0] dataOutW_temp, output reg [WIDTH-1:0] dataOutL_temp);
 
 localparam East = 2'b00, West = 2'b01, Local = 2'b10;
 localparam NextIP0=LOCAL_IP==3?0:(LOCAL_IP+1);
 localparam NextIP1=NextIP0==3?0:(NextIP0+1);
 localparam LastIP=LOCAL_IP==0?2'b11:(LOCAL_IP-1);
 
-reg[15:0] dataIn[2:0];//reg [15:0] dataE, dataW, dataL; 
+reg[WIDTH-1:0] dataIn[2:0];//reg [15:0] dataE, dataW, dataL; 
 
-reg [15:0] dataInPrevE, dataInPrevW, dataInPrevL; //stores data that was not transmitted
+reg [WIDTH-1:0] dataInPrevE, dataInPrevW, dataInPrevL; //stores data that was not transmitted
 
 
 reg retainPrevE, retainPrevW, retainPrevL;
@@ -183,11 +189,9 @@ always @ (posedge clk, posedge reset) begin
 end 
 
 always @ (*) begin
-
 	dataIn[0] = retainPrevE? dataInPrevE: dataInFifoE;
 	dataIn[1] = retainPrevW? dataInPrevW: dataInFifoW;
 	dataIn[2] = retainPrevL? dataInPrevL: dataInFifoL;
-
 end
 
 
@@ -225,6 +229,7 @@ reg[2:0] dst [2:0];
 //      W -|- E    00- 01- 10- 11
 //     xxx....XXXaaaav
 //     a:address, v:valid 
+//     address:3210
 integer k;
 
 always @(*)begin
@@ -233,9 +238,11 @@ always @(*)begin
 			dst[k]=3'b0;
 			if(dataIn[k][LOCAL_IP+1]==1)begin
 				dst[k][Local]=1; //go Local
+				//dataIn[k][LOCAL_IP+1]=0;
 			end
 			if(dataIn[k][NextIP0+1]==1 || dataIn[k][NextIP1+1])begin
 				dst[k][East]=1;  //go East
+			
 			end
 			if(dataIn[k][LastIP+1]==1)begin
 				dst[k][West]=1;  //go West
@@ -263,21 +270,28 @@ always@(*)begin
 		if(dataIn[pos][0]==1)begin  //if is a valid value
 			if ((dst[pos][East]==1)&(~portBusy[0])) begin  //one package may go to multi direction
 				dataOutE_temp=dataIn[pos];
+				//dataOutE_temp[LOCAL_IP+1]=0; //cancel back-repeat
 				portBusy[0]=1;
 				granted[pos]=1;
+
 			end
 			if ((dst[pos][West]==1)&(~portBusy[1])) begin 
 				dataOutW_temp=dataIn[pos];
+				//dataOutW_temp[LOCAL_IP+1]=0; //cancel back-repeat
 				portBusy[1]=1;
 				granted[pos]=1;
 			end
 			if ((dst[pos][Local]==1)&(~portBusy[2])) begin 
 				dataOutL_temp=dataIn[pos];
+				//dataOutL_temp[LOCAL_IP+1]=0;
 				portBusy[2]=1;
 				granted[pos]=1;
 			end
+			if(dst[pos]==3'b0)begin
+				granted[pos]=1;
+			end
 
-			if(granted[pos]==0) retain[pos]=1;
+			if(granted[pos]==0) retain[pos]=1; //drop no destionation package
 		end
 	end
 end
@@ -286,9 +300,9 @@ end
 
 //write control--------------------------------
 //detect output has data or not
-assign hasOutE= dataOutE_temp[0] & (~writeE);
-assign hasOutW= dataOutW_temp[0] & (~writeW);
-assign hasOutL= dataOutL_temp[0] & (~writeL);
+assign hasOutE= dataOutE_temp[0] ;
+assign hasOutW= dataOutW_temp[0] ;
+assign hasOutL= dataOutL_temp[0] ;
 
 //control wrt_ables
 always @(posedge clk or posedge reset) begin
@@ -316,11 +330,14 @@ always @(posedge clk or posedge reset) begin
 end
 
 always @ (*) begin
-	writeE = wrt_ableE & (hasOutE);
-	writeW = wrt_ableW & (hasOutW);
-	writeL = wrt_ableL & (hasOutL);
-end
+	if(wrt_ableE & hasOutE)writeE=1;
+	else writeE=0;
+	if(wrt_ableW & hasOutW) writeW=1;
+	else writeW=0;
+	if(wrt_ableL & hasOutL) writeL=1;
+	else writeL=0;
 
+end
 
 //block a port is outputting or next router is full
 always @(*) begin

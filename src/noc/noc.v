@@ -151,18 +151,18 @@ always @(*)begin
 	end
 end
 
-integer k,h;
-always @(posedge clk)begin
-	$display($time,"--------------------");
-	for(k=0;k<4;k=k+1)begin
-	//$display("datainL[%d]=%d,dataInE[%d]=%d,dataInW[%d]=%d",k,datainL[k],k,dataInE[k],k,dataInW[k]);
-	$display("writeE[%d]=%d,writeW[%d]=%d,writeOutE[%d]=%d,writeOutW[%d]=%d",k,writeE[k],k,writeW[k],k,writeOutE[k],k,writeOutW[k]);		
-	end
+// integer k,h;
+// always @(posedge clk)begin
+// 	$display($time,"--------------------");
+// 	for(k=0;k<4;k=k+1)begin
+// 	//$display("datainL[%d]=%d,dataInE[%d]=%d,dataInW[%d]=%d",k,datainL[k],k,dataInE[k],k,dataInW[k]);
+// 	//$display("writeE[%d]=%d,writeW[%d]=%d,writeOutE[%d]=%d,writeOutW[%d]=%d",k,writeE[k],k,writeW[k],k,writeOutE[k],k,writeOutW[k]);		
+// 	end
 
-	// for(h=0;h<4;h=h+1)begin
-	// $display("dataOutE[%d]=%d,dataOutW[%d]=%d,dataOutL[%d]=%d",h,dataOutE[h],h,dataOutW[h],h,dataOutL[h]);	
-	// end
+// 	// for(h=0;h<4;h=h+1)begin
+// 	// $display("dataOutE[%d]=%d,dataOutW[%d]=%d,dataOutL[%d]=%d",h,dataOutE[h],h,dataOutW[h],h,dataOutL[h]);	
+// 	// end
 
-end
+// end
 
 endmodule

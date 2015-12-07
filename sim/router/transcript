@@ -1,0 +1,296 @@
+# Reading D:/Program Files/ModelSim/tcl/vsim/pref.tcl
+# OpenFile D:/OneDrive/PolyCourse/AdHardwareDesign/Project/sim/router/router.mpf
+# Loading project router
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.testRouter
+# //  ModelSim PE Student Edition 10.4a Apr  7 2015 
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# // NOT FOR CORPORATE OR PRODUCTION USE.
+# // THE ModelSim PE Student Edition IS NOT A SUPPORTED PRODUCT.
+# // FOR HIGHER EDUCATION PURPOSES ONLY
+# //
+# vsim -gui D:\OneDrive\PolyCourse\AdHardwareDesign\Project\sim\router\router.mpf 
+# Start time: 21:13:24 on Dec 06,2015
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(40): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataIn'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v(3).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/fifoE File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(42): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataIn'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v(3).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/fifoW File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(44): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataIn'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v(3).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/fifoL File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(56): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(68).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/o File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(56): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(68).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/o File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(56): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(68).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/o File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(13).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(14).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(15).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(18).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v failed with 2 errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 1 failed with 2 errors.
+restart -f
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(13).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(14).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataInL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(15).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(32): [PCDPC] - Port size (32) does not match connection size (16) for port 'dataOutL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(18).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v failed with 2 errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 1 failed with 2 errors.
+# Compile of testRouter.v failed with 1 errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 1 failed with 1 error.
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(26): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(77).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wE File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(27): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(77).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wW File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(28): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(77).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wL File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v failed with 3 errors.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 1 failed with 3 errors.
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(26): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(86).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wE File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(27): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(86).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wW File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(28): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOut'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v(86).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/wL File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoE'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(101).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoW'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(102).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataInFifoL'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(103).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutE_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutW_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# ** Warning: (vsim-3015) D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(46): [PCDPC] - Port size (16) does not match connection size (32) for port 'dataOutL_temp'. The port definition is at: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v(108).
+#    Time: 0 ns  Iteration: 0  Instance: /testRouter/router/a File: D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/router_improved.v
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+run
+add wave -position insertpoint sim:/testRouter/*
+restart
+run
+run
+run
+run
+# Compile of testRouter.v was successful.
+# Compile of fifo_improved.v was successful.
+# Compile of noc.v was successful.
+# Compile of ram.v was successful.
+# Compile of router_improved.v was successful.
+# 5 compiles, 0 failed with no errors.
+restart -f
+# Loading work.testRouter
+# Loading work.writer
+# Loading work.noc_router
+# Loading work.fifo_improved
+# Loading work.regfile
+# Loading work.arbiter
+# Loading work.outport
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# End time: 21:27:16 on Dec 06,2015, Elapsed time: 0:13:52
+# Errors: 0, Warnings: 60

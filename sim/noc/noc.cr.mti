@@ -1,12 +1,4 @@
-D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/testRouter.v
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module testRouter
--- Compiling module writer
-
-Top level modules:
-	testRouter
-
-} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
+D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/noc.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
 -- Compiling module noc
 
@@ -19,6 +11,14 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 
 Top level modules:
 	regfile
+
+} {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/test/noc/myTest.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module myTest
+-- Compiling module writer
+
+Top level modules:
+	myTest
 
 } {} {}} D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v {1 {vlog -work work -stats=none D:/OneDrive/PolyCourse/AdHardwareDesign/Project/src/noc/fifo_improved.v
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015

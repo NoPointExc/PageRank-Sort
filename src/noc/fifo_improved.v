@@ -1,4 +1,4 @@
-module fifo_improved #(parameter WIDTH=16, DEPTH=32, ADDWIDTH=5)
+module fifo_improved #(parameter WIDTH=32, DEPTH=32, ADDWIDTH=5)
 (input clk, input reset, input write, input read,
  input [WIDTH-1:0] dataIn, output reg [WIDTH-1:0] dataOut, output reg full, 
  output reg almost_full, output reg empty, output reg almost_empty);
@@ -78,6 +78,6 @@ wire [WIDTH-1:0] dataOut_temp;
 always @ (*) 
 	dataOut = dataOut_temp;
 
-regfile rf1 (clk, reset, write, read, head, tail, dataIn, dataOut_temp);
+regfile #(WIDTH,DEPTH,ADDWIDTH) rf1 (clk, reset, write, read, head, tail, dataIn, dataOut_temp);
 
 endmodule
