@@ -3,7 +3,7 @@ reg clk,reset;
 reg [1:0]id;
 reg  full_req;
 reg almost_full_req;
-reg [6:0] request_id;
+reg [5:0] request_id;
 wire [11:0] dataIn_req;
 wire write_req;
 
@@ -18,6 +18,7 @@ initial begin
 	clk=1'b0;
 	reset=1'b0;
 	id=2;
+	$monitor("%d",dataIn_req);
 
 	#10 full_req=0;almost_full_req=0;request_id=0;
 	#10 full_req=0;almost_full_req=0;request_id=20;
