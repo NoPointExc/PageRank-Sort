@@ -18,7 +18,7 @@ wire [WIDTH-1:0] node0Val;
 // wire [WIDTH-1:0] node2Val;
 // wire [WIDTH-1:0] node3Val;
 
-pageRank #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
+pageRank16 #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
 
 
 initial begin
