@@ -24,7 +24,7 @@ module noc_router
  input [WIDTH-1:0] dataIn3, //write data ports
  output  [WIDTH-1:0] dataOutE,
  output  [WIDTH-1:0] dataOutW,
-  output  [WIDTH-1:0] dataOutL,
+ output  [WIDTH-1:0] dataOutL,
  output  [WIDTH-1:0] dataOut3, //output ports
  output writeOutE,
  output writeOutW,
@@ -33,7 +33,7 @@ module noc_router
  output  fullE, 
  output  fullW, 
  output  fullL, 
-  output  full3,
+ output  full3,
  output   almost_fullE, 
  output   almost_fullW, 
  output   almost_fullL,
@@ -44,9 +44,9 @@ module noc_router
 parameter ADDWIDTH = $clog2(DEPTH);
 
 wire readE, readW, readL,read3; //output from arbiter, input to FIFO
-wire [15:0] dataOutFifoE, dataOutFifoW, dataOutFifoL,dataOutFifo3; //output from FIFO, input to arbiter
+wire [WIDTH-1:0] dataOutFifoE, dataOutFifoW, dataOutFifoL,dataOutFifo3; //output from FIFO, input to arbiter
 wire emptyE, almost_emptyE, emptyW, almost_emptyW, emptyL, almost_emptyL,empty3, almost_empty3; //output from FIFO, input to arbiter
-wire [15:0] dataOutE_temp, dataOutW_temp, dataOutL_temp,dataOut3_temp; //output from arbiter, input to outport 
+wire [WIDTH-1:0] dataOutE_temp, dataOutW_temp, dataOutL_temp,dataOut3_temp; //output from arbiter, input to outport 
 
 fifo_improved #(WIDTH,DEPTH,ADDWIDTH)  fifoE (clk,  reset,  writeE,  readE, dataInE, dataOutFifoE, fullE, almost_fullE, emptyE, almost_emptyE);
 
@@ -67,7 +67,7 @@ arbiter #(WIDTH,LOCAL_IP) arb(clk, reset,
 		      		  dataOutE_temp, dataOutW_temp, dataOutL_temp,dataOut3_temp); 
 
  
-outport out(clk, reset, 
+outport #(WIDTH) out(clk, reset, 
 		dataOutE_temp, dataOutW_temp, dataOutL_temp,dataOut3_temp,
 		writeOutE_temp,writeOutW_temp,writeOutL_temp,writeOut3_temp,
 		dataOutE, dataOutW, dataOutL,dataOut3,
@@ -112,21 +112,21 @@ endmodule
 
 //this one does not dequeue items that are not transmitted
 module arbiter  #(parameter WIDTH=16,LOCAL_IP=2'b00) (input clk, input reset, 
-	    input emptyE, input almost_emptyE, input [15:0] dataInFifoE,
-		input emptyW, input almost_emptyW, input [15:0] dataInFifoW,
-		input emptyL, input almost_emptyL, input [15:0] dataInFifoL,
-		input empty3, input almost_empty3, input [15:0] dataInFifo3,
+	    input emptyE, input almost_emptyE, input [WIDTH-1:0] dataInFifoE,
+		input emptyW, input almost_emptyW, input [WIDTH-1:0] dataInFifoW,
+		input emptyL, input almost_emptyL, input [WIDTH-1:0] dataInFifoL,
+		input empty3, input almost_empty3, input [WIDTH-1:0] dataInFifo3,
 		input readFullE,input readFullW,input readFullL,input readFull3,     //read full ports of destination
        	input read_almostfullE,input read_almostfullW,input read_almostfullL, input read_almostfull3,//read almost_full port of destination
        	output reg writeE,output reg writeW,output reg writeL,output reg write3,   //connect to write port of destination
 		output reg readE, output reg readW, output reg readL,output reg read3,
-		output reg [15:0] dataOutE_temp, output reg [15:0] dataOutW_temp, output reg [15:0] dataOutL_temp, output reg [15:0] dataOut3_temp);
+		output reg [WIDTH-1:0] dataOutE_temp, output reg [WIDTH-1:0] dataOutW_temp, output reg [WIDTH-1:0] dataOutL_temp, output reg [WIDTH-1:0] dataOut3_temp);
 
 localparam East = 2'b00, West = 2'b01, Local = 2'b10,PORT3=2'b11;
 
-reg[15:0] dataIn[3:0];//reg [15:0] dataE, dataW, dataL; 
+reg[WIDTH-1:0] dataIn[3:0];//reg [15:0] dataE, dataW, dataL; 
 
-reg [15:0] dataInPrevE, dataInPrevW, dataInPrevL,dataInPrev3; //stores data that was not transmitted
+reg [WIDTH-1:0] dataInPrevE, dataInPrevW, dataInPrevL,dataInPrev3; //stores data that was not transmitted
 
 
 reg retainPrevE, retainPrevW, retainPrevL,retainPrev3;

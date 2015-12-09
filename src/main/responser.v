@@ -2,17 +2,17 @@
 may lose response after busy
  */
 module responder 
-#(parameter DATA_W=16,RESP_W=DATA_W+6+3,REQ_W=12) //16+3+2+1=22
+#(parameter DATA_W=16,RESP_W=DATA_W+6+3,REQ_W=12) //16+6+3=25
 (input clk, input reset, 
 input full, input almost_full, 
 input [1:0] id, 
 input [REQ_W-1:0] dataIn, //From requestor NOC
 input [DATA_W-1:0] reply,
 output reg [RESP_W-1:0] dataOut, output reg write, //To responder NoC
-output reg [5:0] reg_id
+output reg [5:0] reg_id   //query_id
 );
 
-//Packet format:
+//Response Packet format:
 //                      23-3                  2-1          0
 //                     ID/Data              Dest Port       Valid
 //                    23-9/ 8-3

@@ -11,7 +11,7 @@ input [5:0] request,
 output reg [WIDTH-1:0] dataOut, output reg write //To NoC
 );
 
-//Packet format:
+//Request Packet format:
 //                      11-5         4-3                2-1          0
 //                     Data       Src port        Dest Port       Valid
 //                     6 bits        2bit             2 bits     1 bit

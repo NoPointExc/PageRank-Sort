@@ -5,7 +5,7 @@ lunch,lunch,lunch!!!
  */
 
 module testRouter;
-parameter WIDTH = 16;
+parameter WIDTH = 12;
 parameter DEPTH = 32;
 
 

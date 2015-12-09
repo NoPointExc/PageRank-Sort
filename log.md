@@ -65,3 +65,22 @@ address formate: 0011, muliticast to 0,1
 reserved address:0000, will be droped.
 
 valid bit: 0=invalid, 1=valid
+
+
+12/09/2015  06:03 PM
+--------------------
+noc work, do not change again.
+
+*Request Formate*
+range	11-5         4-3                2~1          0
+type 	reg_id      Src port          Dest Port      Valid
+len 	6 bits       2bit             2 bits     1 bit
+
+*Response Formate*
+    23~3                  2~1          0
+  23~9|8~3             Dest Port       Valid
+  Data|REG_ID   
+ 
+*Ant Response Input*     
+  23~9       8~3     
+ Data       REG_ID   
