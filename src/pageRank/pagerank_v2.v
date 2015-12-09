@@ -80,7 +80,7 @@ always @(posedge clk or posedge reset) begin
 	if (reset) 
 		page=N-1;		
 	else begin
-		page=page+2;
+		page=page+1;
 		if(page==N) page=0;
 	end
 

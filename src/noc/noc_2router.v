@@ -3,24 +3,24 @@ TODO: check size/width of reply
  */
 
 module noc 
-#(parameter N=16, WIDTH=16)
+#(parameter N=16, DATA_W=16,RESP_W=DATA_W+6+3,REQ_W=12)
 (input clk,input reset,
 input [5:0] request0, //request page id,16~64
 input [5:0] request1,  //-->request_id
 input [5:0] request2,  
 input [5:0] request3,
-input [28:0] reply0,  //--->reply from ants {val,reg_id}
-input [28:0] reply1,
-input [28:0] reply2,
-input [28:0] reply3,
-output [5:0] query_id0,  //--->query_id
+input [DATA_W-1:0] reply0,  //--->reply from ants 
+input [DATA_W-1:0] reply1,
+input [DATA_W-1:0] reply2,
+input [DATA_W-1:0] reply3,
+output [5:0] query_id0,  //--->query_id, page value that requestd
 output [5:0] query_id1,
 output [5:0] query_id2,
 output [5:0] query_id3,
-output [WIDTH-1:0] reg response0, //resonsder out-->response to ants
-output [WIDTH-1:0] reg response1, //
-output [WIDTH-1:0] reg response2,
-output [WIDTH-1:0] reg response3);
+output [DATA_W+5:0] reg response0, //resonsder out-->response to ants
+output [DATA_W+5:0] reg response1, 
+output [DATA_W+5:0] reg response2,
+output [DATA_W+5:0] reg response3);
 
 //map I/O to array
 wire [5:0] request_id [3:0];
@@ -67,13 +67,13 @@ noc_router #(12,DEPTH) noc_req(clk,reset,
 wire write_rsp[3:0];
 wire read_Full_rsp[3:0];
 wire read_almostFull_rsp[3:0];
-wire [WIDTH-1:0] dataIn_rsp[3:0];
-reg [WIDTH-1:0] dataOut_rsp[3:0];
+wire [DATA_W-1:0] dataIn_rsp[3:0];
+reg [DATA_W+5:0] dataOut_rsp[3:0]; //return to each packrank16, directly
 reg writeOut_rsp[3:0];
 reg full_rsp[3:0];
 reg almost_full_rsp[3:0];
 
-noc_router #(WIDTH,DEPTH) noc_rsp(clk,reset,
+noc_router #(DATA_W,DEPTH) noc_rsp(clk,reset,
 	write_rsp[0],write_rsp[1],write_rsp[2],write_rsp[3],
 	read_Full_rsp[0],read_Full_rsp[1],read_Full_rsp[2],read_Full_rsp[3],
 	read_almostFull_rsp[0],read_almostFull_rsp[1],read_almostFull_rsp[2],read_almostFull_rsp[3],
@@ -99,6 +99,14 @@ generate
 		dataIn_rsp[i], write_rsp[i],query_id[i]);
 	end
 endgenerate
+
+
+//map dataOut_rsp[]>>response0,response1,response2,response3
+
+always @(*)begin
+	
+		
+end
 
 
 endmodule
