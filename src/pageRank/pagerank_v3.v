@@ -6,7 +6,7 @@ TODO : combin logic --> sequential logic
 //http://www.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html
 //The data in this example are based on the example in the link above.
 
-module  pageRank16 #(parameter N=16, WIDTH=16)
+module  pageRank16V3 #(parameter N=16, WIDTH=16)
 (
 input clk,
 input reset,

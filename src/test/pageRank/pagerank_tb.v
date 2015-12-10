@@ -13,13 +13,25 @@ end
 
 reg [N*N-1:0] adj;
 reg [N*WIDTH-1:0] nodeWeight;
+
+reg [5:0] query;
+reg [WIDTH+5:0] response;
+
+wire [5:0] request;
+wire [WIDTH-1:0] reply;
 wire [WIDTH-1:0] node0Val;
 // wire [WIDTH-1:0] node1Val;
 // wire [WIDTH-1:0] node2Val;
 // wire [WIDTH-1:0] node3Val;
 
-pageRank16  #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
+// ant  #(N,N,WIDTH) ant(clk,reset,adj,nodeWeight,2'b0,
+// 	query,response,
+// 	request,reply,node0Val);
 
+//pageRank16 #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
+//pageRank16V3 #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
+// pageRankv1 #(N,WIDTH) prv1(clk,reset,adj,nodeWeight,node0Val);
+pageRankSample #(N,WIDTH) prv1(clk,reset,adj,nodeWeight,node0Val);
 integer i,j;
 initial begin
 	reset = 1'b0;

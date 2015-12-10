@@ -6,7 +6,7 @@ TODO : combin logic --> sequential logic
 //http://www.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html
 //The data in this example are based on the example in the link above.
 
-module  pageRank16 #(parameter N=16, WIDTH=16)
+module pageRank16 #(parameter N=4, WIDTH=16)
 (
 input clk,
 input reset,
@@ -21,15 +21,15 @@ output reg [WIDTH-1:0] node0Val
 // For example, the 16 bit value 2'h11 corresponds to (2^16-1)/2^16.
 
 localparam base=17'h10000;
-localparam d = 16'h2666;   //d = 0.15, 9830  0.15=15/100=3/20
+localparam d = 16'h2666;   //d = 0.15
 localparam dn = d/N; // d/N : NOTE --- please update based on N
 localparam db = base-d; //1-d: NOTE: --- please update based on d 
-localparam n_1=base/N;  // 1/n
+localparam n_1=base/4;  // 1/n
 
 reg [WIDTH-1:0] nodeVal [N-1:0]; //value of each node
 //reg [WIDTH-1:0] nodeVal_next [N-1:0]; //next state node value
-reg [WIDTH-1:0] nodeWeight_db [N-1:0]; //weight of each node
-reg [N-1:0] adj [N-1:0]; //adjacency matrix
+reg [WIDTH-1:0] nodeWeight [N-1:0]; //weight of each node
+reg adj [N-1:0] [N-1:0]; //adjacency matrix
 
 
 
@@ -38,15 +38,13 @@ reg [N-1:0] count;
 
 reg [3*WIDTH-1:0] temp; //16bit*16bit*16bit
 
-
-
 //Convert adj from 1D to 2D array
 always @ (*) begin
 	count = 0;
 	for (p=0; p<N; p=p+1) begin
 		for (q=0; q<N; q=q+1) begin
 			adj[p][q] = adjacency[count];
-			count = count+1;		
+			count = count+1;
 		end
 	end
 end
@@ -54,7 +52,7 @@ end
 //Convert nodeWeights from 1D to 2D array
 always @ (*) begin
 	for (r=0; r<N; r=r+1) begin
-		nodeWeight_db[r] = db*weights[r*WIDTH+:WIDTH];
+		nodeWeight[r] = weights[r*WIDTH+:WIDTH];
 	end
 end
 
@@ -76,23 +74,18 @@ end
 reg [5:0] page;
 
 //update one page @ every clk
-always @(posedge clk or posedge reset) begin	
+always @(posedge clk or posedge reset) begin
+	
 	if (reset) 
 		page=N-1;		
 	else begin
 		page=page+1;
 		if(page==N) page=0;
 	end
-
 end
-
-reg [WIDTH-1:0] a0,b0,a1,b1;
-wire [3*WIDTH-1:0] c0,c1;
-
 
 
 //generate nodeVal_next based on old value
-//update two value each time
 always@(page,reset)begin
 	if(reset)begin
 		for (i=0; i<N; i=i+1) begin
@@ -101,14 +94,17 @@ always@(page,reset)begin
 	end
 	else begin
 		nodeVal[page]=dn;
-		for (k=0; k<N; k=k+2) begin
-			if(adj[page][k]==1'b1 && k!=page) begin  //can't update yourself with yourself
-				temp =  nodeWeight_db[k] * nodeVal[k];
-				nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH];				
+		for (k=0; k<N; k=k+1) begin
+			if(adj[page][k]==1'b1) begin
+				//Add db*nodeval[k]*nodeWeight[k]
+				temp = db * nodeWeight[k] * nodeVal[k];
+				nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH]; 
 			end
-		end
+		end	
 	end
+
 end
+
 
 
 endmodule
