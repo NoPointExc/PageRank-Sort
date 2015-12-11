@@ -78,7 +78,7 @@ endgenerate
 
 
 top10 # (WIDTH,M) sortvals
-(clk&done,rst,array_in, top10Vals, top10IDs);
+(clk,reset,done,array_in, top10Vals, top10IDs);
 
 
 endmodule

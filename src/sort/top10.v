@@ -4,7 +4,7 @@ TODO:
  */
 module top10
 # (parameter  DATA_WIDTH= 16, NUM_WORDS = 32)
-(input clk,input rst, input [DATA_WIDTH*NUM_WORDS-1:0] array_in,
+(input clk,input rst, input enable,input [DATA_WIDTH*NUM_WORDS-1:0] array_in,
 output  [DATA_WIDTH*10-1:0] array_out, output  [6*10-1:0] id_out);
 
 
@@ -13,8 +13,8 @@ integer j,k,l,m;
 integer x;
 always @(*)begin
 	$display($time,"--------------");
-	for(x=0;x<NUM_WORDS;x=x+1)begin
-		$display("in%d=%d id=%d",x,array[x],id_out[x*6+:6]);		
+	for(x=0;x<NUM_WORDS ;x=x+1)begin
+		$display("in%d=%d id=%d",x,array[x],ID[x]);		
 	end
 end
 
@@ -23,6 +23,7 @@ end
 // 	$display($time);
 // 	$display( "head=%d,p=%d,max=%d",head,p,max);
 // 	$display("array[head]=%d,array[p]=%d",array[head],array[p]);
+// 	$display("enable%d",enable);
 // end
 
 reg [DATA_WIDTH-1:0] array [NUM_WORDS-1:0];
@@ -30,12 +31,14 @@ reg [DATA_WIDTH-1:0] array [NUM_WORDS-1:0];
 reg [5:0] ID [NUM_WORDS-1:0];
 
 always@(*) begin
+	if(enable)begin
 	l=0;
-	for (j=0; j<NUM_WORDS; j=j+1) begin
-		for (k=0; k<DATA_WIDTH; k=k+1) begin
-		      	array[j][k]=array_in[l];
-		     	l=l+1;
-		end
+		for (j=0; j<NUM_WORDS; j=j+1) begin
+			for (k=0; k<DATA_WIDTH; k=k+1) begin
+			      	array[j][k]=array_in[l];
+			     	l=l+1;
+			end
+		end		
 	end
 end
 
@@ -52,10 +55,11 @@ always @(posedge clk or posedge rst) begin
 		 head<=0;
 		 max<=NUM_WORDS-1;
 		 for(n=0;n<NUM_WORDS;n=n+1)begin
-		 	ID[n]=n;
+		 	ID[n]<=n;
+		 	//$display($time,"ID[n]=%d",ID[n]);
 		 end
 	end
-	else begin
+	else if(enable) begin
 		 
 		 if(head<10)begin
 			 if(p>head)begin

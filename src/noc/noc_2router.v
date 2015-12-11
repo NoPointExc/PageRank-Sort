@@ -38,10 +38,12 @@ assign reply[2] = reply2;
 assign reply[3] = reply3;
 
 wire [5:0] query_id [3:0];
-assign query_id[0] = query_id0;
-assign query_id[1] = query_id1;
-assign query_id[2] = query_id2;
-assign query_id[3] = query_id3;
+
+
+assign query_id0=  query_id[0] ;
+assign query_id1=  query_id[1] ;
+assign query_id2=  query_id[2] ;
+assign query_id3=  query_id[3] ;
 
 wire write_req[3:0];
 wire read_Full_req[3:0];

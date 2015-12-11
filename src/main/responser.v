@@ -25,11 +25,14 @@ reg [1:0] dest;
 
 
 
-always @(dataIn)begin
-	valid=dataIn[0];
-	dest=dataIn[4:3];
-	reg_id=dataIn[11:5];	
+always @(*)begin
+	if(dataIn[0])begin
+		valid=dataIn[0];
+		dest=dataIn[4:3];
+		reg_id=dataIn[11:5];
+	end
 end
+
 
 always @(posedge clk or posedge reset) begin
 	if (reset) begin
@@ -43,9 +46,11 @@ always @(posedge clk or posedge reset) begin
 			write <=1'b0;
 		end
 		else begin
+
 			write <=1'b1;
 			dataOut<={reply,reg_id,dest,valid};
 			valid<=0; //send out, cancel request
+			//$display("dataOut=%b",reply);  no reply
 		end
 	end
 	else begin  //not valid

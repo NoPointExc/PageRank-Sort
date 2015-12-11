@@ -47,7 +47,7 @@ reg [M-1:0] adj [N-1:0]; //adjacency matrix
 
 
 
-reg [N-1:0] i,j,k,p,q,r,x,s;
+reg [N-1:0] i,j,k,p,q,r,x,s,z;
 reg [N-1:0] count;
 
 reg [3*WIDTH-1:0] temp; //16bit*16bit*16bit
@@ -62,7 +62,7 @@ endgenerate
 
 
 
-//--------------------inner page update-------------
+
 //Convert adj from 1D to 2D array
 always @ (*) begin
 	count = 0;
@@ -73,8 +73,6 @@ always @ (*) begin
 		end
 	end
 end
-
-//Convert nodeWeights from 1D to 2D array
 
 
 //Convert nodeWeights from 1D to 2D array
@@ -91,17 +89,21 @@ end
 
 
 
-
+//--------------------inner page update-------------
 
 //generate the page number need to update
 reg [5:0] page;
-
+reg block;
 //update one page @ every clk
 always @(posedge clk or posedge reset) begin
+	// if(id==1)begin
+	// 	$display($time,"--------");
+	// 	$display("ID=%d,page=%d,block=%d,request=%d,response_page=%d,response_val=%d,response=%b",id,page,block,request,response_page,response_val,response);
+	// end 
 	
 	if (reset) 
 		page=N-1;		
-	else begin
+	else if(!block)begin
 		page=page+1;
 		if(page==N) page=0;
 	end
@@ -115,15 +117,21 @@ always@(page,reset)begin
 		for (i=0; i<N; i=i+1) begin
 		nodeVal[i] = n_1; // reset to (1/N) = 0.25. Note --- Please update based on N.
 		end
+		block=1'b0;
 	end
 	else begin
 		nodeVal[page]=dn;
-		for (k=0; k<N; k=k+1) begin
+		for (k=0; k<M; k=k+1) begin
 			if(adj[page][k]==1'b1) begin
-				//Add db*nodeval[k]*nodeWeight[k]
-				temp = db * nodeWeight[k] * nodeVal[k];
-				nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH]; 
-			end
+				if(k>=id*N && k<(id+1)*N)begin  //inner page
+					temp = db * nodeWeight[k] * nodeVal[k];
+					nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH]; 
+				end
+				else begin  //outside
+					request=k;
+					block=1'b1;
+				end			
+			end		
 		end	
 	end
 
@@ -135,11 +143,15 @@ end
 reg [5:0] index;
 reg [3*WIDTH-1:0] buffer2;
 always @(query)begin
-	index=query-id*WIDTH;  //6 bits-id 2 bits* WIDTH 4 bits
+	index=query-id*N;  //6 bits-id 2 bits* WIDTH 4 bits
 	buffer2=db*nodeVal[index]*nodeWeight[index];
 	reply=buffer2[3*WIDTH-1:2*WIDTH];
+	//$display("reply=%d,ID=%d",index,id);
 end
 
+// always@(*)begin
+// 	$display("ID=%d,query=%d,reply=%d",id,query,reply);
+// end
 
 reg [5:0] response_page;
 reg [WIDTH-1:0] response_val;
@@ -147,35 +159,9 @@ reg [WIDTH-1:0] response_val;
 always @(response) begin
 	response_page=response[5:0];
 	response_val=response[WIDTH+5:6];
-	//scan whole row || and update pages relative to response_page
-	for(x=0;x<N;x=x+1)begin
-		//page x releative to response_page
-		if(adj[x][response_page]==1'b1)begin
-			nodeVal[x] = nodeVal[x] + response_val;
-		end
-	end
+	nodeVal[page] = nodeVal[page] + response_val;
+	block=1'b0; //cancel block, process resume
 end
-
-//send out requests
-reg [6:0] request_page; //interation between N ~ M-1
-always @(posedge clk or posedge reset) begin
-	if (reset) begin
-		request_page=M-1;	
-	end
-	else begin
-		request_page=response_page+1;	
-		if(response_page==M) request_page=N;	
-	end
-end
- 
- always @(request_page)begin
- 	for(s=0;s<N;s=s+1)begin
- 		if(adj[s][request_page]) begin
- 			request=request_page;
- 		end
- 	end
- end
-
 
 
 

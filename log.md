@@ -92,3 +92,7 @@ len 	6 bits       2bit             2 bits     1 bit
 
 vals converaged, but sort result is wrong
 converaged values seems wrong
+
+12/11/2015  12:03 AM
+----------------------
+vals loses output
