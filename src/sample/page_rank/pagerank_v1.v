@@ -1,17 +1,18 @@
+/*
+TODO : combin logic --> sequential logic
+ */
+
 //Read more details on the pagerank algorithm here.
 //http://www.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html
 //The data in this example are based on the example in the link above.
 
-module pageRankSample #(parameter N=4, WIDTH=16)
+module pageRankv1 #(parameter N=4, WIDTH=16)
 (
 input clk,
 input reset,
 input [N*N-1:0] adjacency,
 input [N*WIDTH-1:0] weights,
-output reg [WIDTH-1:0] node0Val,
-output reg [WIDTH-1:0] node1Val,
-output reg [WIDTH-1:0] node2Val,
-output reg [WIDTH-1:0] node3Val
+output reg [WIDTH-1:0] node0Val
 );
 
 
@@ -19,9 +20,11 @@ output reg [WIDTH-1:0] node3Val
 //All values are in the range [0,(2^16-1)/2^16]. 
 // For example, the 16 bit value 2'h11 corresponds to (2^16-1)/2^16.
 
+localparam base=17'h10000;
 localparam d = 16'h2666;   //d = 0.15
-localparam dn = 16'h099a; // d/N : NOTE --- please update based on N
-localparam db = 16'hd99a; //1-d: NOTE: --- please update based on d 
+localparam dn = d/N; // d/N : NOTE --- please update based on N
+localparam db = base-d; //1-d: NOTE: --- please update based on d 
+localparam n_1=base/4;  // 1/n
 
 reg [WIDTH-1:0] nodeVal [N-1:0]; //value of each node
 reg [WIDTH-1:0] nodeVal_next [N-1:0]; //next state node value
@@ -34,6 +37,10 @@ reg [N-1:0] i,j,k,p,q,r;
 reg [N-1:0] count;
 
 reg [3*WIDTH-1:0] temp; //16bit*16bit*16bit
+
+// always @(clk) begin
+//  $display("d=%h,dn=%h,db=%h",d,dn,db);
+// end
 
 //Convert adj from 1D to 2D array
 always @ (*) begin
@@ -54,10 +61,10 @@ always @ (*) begin
 end
 
 
-// reg [WIDTH-1:0] node0Val;
-// reg [WIDTH-1:0] node1Val;
-// reg [WIDTH-1:0] node2Val;
-// reg [WIDTH-1:0] node3Val;
+//reg [WIDTH-1:0] node0Val;
+ reg [WIDTH-1:0] node1Val;
+ reg [WIDTH-1:0] node2Val;
+ reg [WIDTH-1:0] node3Val;
 
 always @ (*) begin
 	node0Val = nodeVal[0];
@@ -67,39 +74,48 @@ always @ (*) begin
 end
 
 
+//generate the page number need to update
+reg [4:0] page;
 
+//update one page @ every clk
+always @(posedge clk or posedge reset) begin
+	
+	if (reset) 
+		page=N-1;		
+	else begin
+		page=page+1;
+		if(page==N) page=0;
+	end
+end
 
-//Combinational logic
-always @ (*) begin
-	//For each node
-	for (j=0; j<N; j=j+1) begin
-		//initialize next state node val
-		nodeVal_next[j] = dn;
-		//Go through adjacency matrix to find node's neighbours
-		for (k=0; k<N; k=k+1) begin
-			if(adj[j][k]==1'b1) begin
-				//Add db*nodeval[k]*nodeWeight[k]
-				temp = db * nodeWeight[k] * nodeVal[k];
-				nodeVal_next[j] = nodeVal_next[j] + temp[47:32]; 
-			end
+//generate nodeVal_next based on old value
+always@(page)begin
+	nodeVal_next[page]=dn;
+	for (k=0; k<N; k=k+1) begin
+		if(adj[page][k]==1'b1) begin
+			//Add db*nodeval[k]*nodeWeight[k]
+			temp = db * nodeWeight[k] * nodeVal[k];
+			nodeVal_next[page] = nodeVal_next[page] + temp[47:32]; 
 		end
 	end
 end
 
-//Next state = current state
-always @ (posedge clk, posedge reset) begin
-  if (reset) begin
-	for (i=0; i<N; i=i+1) begin
-		nodeVal[i] <= 16'h4000; // reset to (1/N) = 0.25. Note --- Please update based on N.
+//next state =current state
+always @(page,reset)begin
+	if(reset)begin
+		for (i=0; i<N; i=i+1) begin
+		nodeVal[i] <= n_1; // reset to (1/N) = 0.25. Note --- Please update based on N.
+		end
 	end
-   end
-   else begin
-	for (i=0; i<N;i=i+1) begin	
-		nodeVal[i] <= nodeVal_next[i]; 
+	else begin
+		if(page==N-1)begin
+			for (i=0;i<N;i=i+1) begin
+				nodeVal[i] <= nodeVal_next[i];
+			end
+		end 
 	end
-   end
+end
 
-end	
 
 endmodule
 

@@ -84,3 +84,11 @@ len 	6 bits       2bit             2 bits     1 bit
 *Ant Response Input*     
   23~9       8~3     
  Data       REG_ID   
+
+
+
+12/10/2015  06:03 PM
+--------------------
+
+vals converaged, but sort result is wrong
+converaged values seems wrong

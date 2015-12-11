@@ -6,6 +6,9 @@ TODO :
 --3) response for query 
 --4)chekc index overflow
 --5)send out request
+
+--6)add output of nodeVal
+7)add iteration times
  */
 
 //Read more details on the pagerank algorithm here.
@@ -24,9 +27,9 @@ input [WIDTH+5:0] response,  //{data,page_id},get response from noc
 
 output reg [5:0] request,    //send request to noc
 output reg [WIDTH-1:0] reply,  //send reply to noc
-output reg [WIDTH-1:0] node0Val //only for test
+output reg [WIDTH-1:0] node0Val, //only for test
+output wire [WIDTH*N-1:0] vals
 );
-//1101100110011010000000000000000
 
 //We will use a 16 bit fixed point representation throughout.
 //All values are in the range [0,(2^16-1)/2^16]. 
@@ -50,7 +53,16 @@ reg [N-1:0] count;
 reg [3*WIDTH-1:0] temp; //16bit*16bit*16bit
 
 
+//output all the page vals 
+generate
+	genvar y;
+	for(y=0;y<N;y=y+1) assign vals[y*WIDTH+:WIDTH] = nodeVal[y] ;
+endgenerate
 
+
+
+
+//--------------------inner page update-------------
 //Convert adj from 1D to 2D array
 always @ (*) begin
 	count = 0;
