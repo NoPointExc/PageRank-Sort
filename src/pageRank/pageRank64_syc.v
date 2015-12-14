@@ -26,16 +26,18 @@ wire [WIDTH-1:0] reply [3:0];
 wire [WIDTH-1:0] node0Val [3:0];
 wire [WIDTH*N-1:0] array [3:0];
 reg  done;
+reg syc_in=1'b1 ; //input to ants
+wire syc_out [3:0];//output from ants
 
 assign nodeVal0= node0Val[0];
 assign nodeVal16=node0Val[1];
 assign nodeVal32=node0Val[2];
 assign nodeVal48=node0Val[3];
 
-// always@(*)begin
+always@(*)begin
 
-// 	$display($time,"%d",nodeVal0);
-// end
+	$display($time,"%d",nodeVal0);
+end
 
 //----------------update time count--------
 
@@ -53,12 +55,24 @@ end
 
 
 //---------------cpu------------------
+always @(posedge clk or posedge reset) begin
+	if (reset) begin
+		syc_in=1;		
+	end
+	else begin
+		syc_in=syc_out[0]&&syc_out[1]&&syc_out[2]&&syc_out[3];
+	end
+end
+
+// always @(*)begin
+// 	$display($time,"syc_in=%d",syc_in);
+// end
 generate
 	genvar i;
 	for(i=0;i<4;i=i+1)begin
 		ant #(N,M,WIDTH) ant(clk,reset,
-			adj[i*N*M+:N*M],nodeWeight[i*N*WIDTH+:N*WIDTH],i[1:0],query[i],response[i],
-			request[i],reply[i],node0Val[i],array[i]);
+			adj[i*N*M+:N*M],nodeWeight[i*N*WIDTH+:N*WIDTH],i[1:0],query[i],response[i],syc_in,
+			request[i],reply[i],node0Val[i],array[i],syc_out[i]);
 	end
 endgenerate
 
@@ -85,6 +99,8 @@ endgenerate
 
 top10 # (WIDTH,M) sortvals
 (clk,reset,done,array_in, top10Vals, top10IDs);
+
+
 
 
 endmodule

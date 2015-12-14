@@ -10,13 +10,13 @@ output  [DATA_WIDTH*10-1:0] array_out, output  [6*10-1:0] id_out);
 
 integer j,k,l,m;
 
-integer x;
-always @(*)begin
-	$display($time,"--------------");
-	for(x=0;x<NUM_WORDS ;x=x+1)begin
-		$display("in%d=%d id=%d",x,array[x],ID[x]);		
-	end
-end
+// integer x;
+// always @(*)begin
+// 	$display($time,"--------------");
+// 	for(x=0;x<NUM_WORDS ;x=x+1)begin
+// 		$display("in%d=%d id=%d",x,array[x],ID[x]);		
+// 	end
+// end
 
 
 // always @(*) begin

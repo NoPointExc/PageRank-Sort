@@ -1,14 +1,6 @@
 /*
 TODO : 
-
---1) ajdust the ports to connect the new NOC
---2) updata from incomming response
---3) response for query 
---4)chekc index overflow
---5)send out request
-
---6)add output of nodeVal
-7)add iteration times
+1) check page @ time 0
  */
 
 //Read more details on the pagerank algorithm here.
@@ -24,11 +16,13 @@ input [N*WIDTH-1:0] weights,
 input [1:0] id,
 input [5:0] query,
 input [WIDTH+5:0] response,  //{data,page_id},get response from noc
+input syc_in,
 
 output reg [5:0] request,    //send request to noc
 output reg [WIDTH-1:0] reply,  //send reply to noc
 output reg [WIDTH-1:0] node0Val, //only for test
-output wire [WIDTH*N-1:0] vals
+output wire [WIDTH*N-1:0] vals,
+output reg syc_out
 );
 
 //We will use a 16 bit fixed point representation throughout.
@@ -96,24 +90,28 @@ reg [5:0] page;
 reg block;
 //update one page @ every clk
 always @(posedge clk or posedge reset) begin
-	// if(id==1)begin
-	// 	$display($time,"--------");
-	// 	$display("ID=%d,page=%d,block=%d,request=%d,response_page=%d,response_val=%d,response=%b",id,page,block,request,response_page,response_val,response);
-	// end 
 	
 	if (reset) 
 		page=N-1;		
-	else if(!block)begin
-		page=page+1;
-		if(page==N) page=0;
+	else if(!block)begin	
+		if(page==N ) begin
+			if(syc_in) begin
+				page=0;
+				syc_out=0;
+			end 
+			else syc_out=1'b1;
+		end
+		else begin
+			page=page+1; 	
+		end 
 	end
 end
 
-always@(*)begin
-	if(page==0)begin
-		$display($time,"id=%d,page=%d",id,page);
-	end
-end
+// always@(*)begin
+// 	if(page==0)begin
+// 		$display($time,"id=%d,page=%d,syc_in=%d,syc_out=%d",id,page,syc_in,syc_out);
+// 	end
+// end
 
 
 //generate nodeVal_next based on old value
@@ -158,10 +156,6 @@ always @(query)begin
 	//$display($time,"reply=%d,nodeVal[%d]=%d",reply,index,nodeVal[index]);
 end
 
-// always@(*)begin
-// 	$display("---------",$time,"--------");
-// 	$display("      id=%d,nodeVal=%p, page=%d",id,nodeVal,page);
-// end
 
 reg [5:0] response_page;
 reg [WIDTH-1:0] response_val;

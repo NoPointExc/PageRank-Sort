@@ -1,6 +1,6 @@
 module pageRank_tb;
 
-localparam N=16;
+localparam N=64;
 localparam WIDTH=16;
 
 reg clk;
@@ -31,7 +31,7 @@ wire [WIDTH-1:0] node0Val;
 //pageRank16 #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
 //pageRank16V3 #(N,WIDTH) pr(clk,reset,adj,nodeWeight,node0Val);
 // pageRankv1 #(N,WIDTH) prv1(clk,reset,adj,nodeWeight,node0Val);
-pageRankSample #(N,WIDTH) prv1(clk,reset,adj,nodeWeight,node0Val);
+pageRank #(N,WIDTH) prv1(clk,reset,adj,nodeWeight,node0Val);
 integer i,j;
 initial begin
 	reset = 1'b0;
