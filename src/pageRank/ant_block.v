@@ -41,6 +41,8 @@ localparam dn = d/N; // d/N : NOTE --- please update based on N
 localparam db = base-d; //1-d: NOTE: --- please update based on d 
 localparam n_1=base/N;  // 1/n
 
+
+reg [WIDTH-1:0] nodeVal_next [N-1:0]; //next state node value
 reg [WIDTH-1:0] nodeVal [N-1:0]; //value of each node
 reg [WIDTH-1:0] nodeWeight [N-1:0]; //weight of each node
 reg [M-1:0] adj [N-1:0]; //adjacency matrix
@@ -87,64 +89,40 @@ always @ (*) begin
 	node0Val = nodeVal[0];
 end
 
-
-
-//--------------------inner page update-------------
-
-//generate the page number need to update
 reg [5:0] page;
+reg [6:0] ref_page;
 reg block;
-//update one page @ every clk
+
 always @(posedge clk or posedge reset) begin
-	// if(id==1)begin
-	// 	$display($time,"--------");
-	// 	$display("ID=%d,page=%d,block=%d,request=%d,response_page=%d,response_val=%d,response=%b",id,page,block,request,response_page,response_val,response);
-	// end 
-	
-	if (reset) 
-		page=N-1;		
-	else if(!block)begin
-		page=page+1;
-		if(page==N) page=0;
+	if (reset) begin
+		ref_page<=0;
+		page<=0;
 	end
-end
-
-always@(*)begin
-	if(page==0)begin
-		$display($time,"id=%d,page=%d",id,page);
-	end
-end
-
-
-//generate nodeVal_next based on old value
-always@(page,reset)begin
-	if(reset)begin
-		for (i=0; i<N; i=i+1) begin
-		nodeVal[i] = n_1; // reset to (1/N) = 0.25. Note --- Please update based on N.
+	else if (!block) begin
+		if(ref_page==M-1)begin
+			ref_page<=0;
+			if(page==N-1) page<=0;
+			else page=page+1;
 		end
-		block=1'b0;
+		else ref_page=ref_page+1;
 	end
-	else begin
-		nodeVal[page]=dn;
-		//$display($time," id=%d, nodeVal[%d]=%d",id,page,dn);
-		for (k=0; k<M; k=k+1) begin
-			if(adj[page][k]==1'b1) begin
-				
-				if((k-id*N)>=0 && (k-id*N)<16)begin  //inner page
-					temp = db * nodeWeight[k-id*N] * nodeVal[k-id*N];
-					nodeVal[page] = nodeVal[page] + temp[3*WIDTH-1:2*WIDTH];
-					//$display($time,"id=%d, local update,nodeVal[%d]=%d, page=%d,(k-id*N)=%d,nodeVal[%d]=%d",id,k,nodeVal[k-id*N],page,(k-id*N),page,nodeVal[page]); 
-				end
-				else begin  //outside
-					request=k;
-					block=1'b1;
-					//$display($time,"id=%d, request=%d,nodeVal[%d]=%d",id,request,page,nodeVal[page]);
-				end			
-			end		
-		end	
-	end
-
 end
+
+
+always @(ref_page, page)begin
+	if(adj[page][ref_page])begin
+		if(ref_page<(id+1)*N && ref_page>=id*N)begin
+			//inner
+			
+		end
+		else begin
+			//outer
+			block=1'b1;
+			request=ref_page;
+		end
+	end
+end
+
 
 
 //----------------------------I/O----------------------------
@@ -155,13 +133,8 @@ always @(query)begin
 	index=query-id*N;  //6 bits-id 2 bits* WIDTH 4 bits
 	buffer2=db*nodeVal[index]*nodeWeight[index];
 	reply=buffer2[3*WIDTH-1:2*WIDTH];
-	//$display($time,"reply=%d,nodeVal[%d]=%d",reply,index,nodeVal[index]);
 end
 
-// always@(*)begin
-// 	$display("---------",$time,"--------");
-// 	$display("      id=%d,nodeVal=%p, page=%d",id,nodeVal,page);
-// end
 
 reg [5:0] response_page;
 reg [WIDTH-1:0] response_val;
@@ -172,7 +145,6 @@ always @(response) begin
 	response_val=response[WIDTH+5:6];
 	nodeVal[page] = nodeVal[page] + response_val;
 	block=1'b0; //cancel block, process resume
-	//$display($time,"  response[%d]",response_page);
 end
 
 

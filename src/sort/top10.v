@@ -3,7 +3,7 @@ TODO:
 1) sort ID
  */
 module top10
-# (parameter  DATA_WIDTH= 16, NUM_WORDS = 32)
+# (parameter  DATA_WIDTH= 16, NUM_WORDS = 16)
 (input clk,input rst, input enable,input [DATA_WIDTH*NUM_WORDS-1:0] array_in,
 output  [DATA_WIDTH*10-1:0] array_out, output  [6*10-1:0] id_out);
 
@@ -12,19 +12,15 @@ integer j,k,l,m;
 
 // integer x;
 // always @(*)begin
-// 	$display($time,"--------------");
-// 	for(x=0;x<NUM_WORDS ;x=x+1)begin
-// 		$display("in%d=%d id=%d",x,array[x],ID[x]);		
+// 	if(enable)begin
+// 		$display($time,"--------------");
+// 		for(x=0;x<NUM_WORDS ;x=x+1)begin
+// 			$display("in%d=%d id=%d",x,array[x],ID[x]);		
+// 		end
 // 	end
 // end
 
 
-// always @(*) begin
-// 	$display($time);
-// 	$display( "head=%d,p=%d,max=%d",head,p,max);
-// 	$display("array[head]=%d,array[p]=%d",array[head],array[p]);
-// 	$display("enable%d",enable);
-// end
 
 reg [DATA_WIDTH-1:0] array [NUM_WORDS-1:0];
 

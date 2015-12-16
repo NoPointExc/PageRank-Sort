@@ -2,7 +2,7 @@
 may lose response after busy
  */
 module responder 
-#(parameter DATA_W=16,RESP_W=DATA_W+6+3,REQ_W=12) //16+6+3=25
+#(parameter DATA_W=16,RESP_W=DATA_W+6+3,REQ_W=11) //16+6+3=25
 (input clk, input reset, 
 input full, input almost_full, 
 input [1:0] id, 
@@ -24,12 +24,11 @@ reg [1:0] dest;
 
 
 
-
 always @(*)begin
 	if(dataIn[0])begin
 		valid=dataIn[0];
 		dest=dataIn[4:3];
-		reg_id=dataIn[11:5];
+		reg_id=dataIn[10:5];
 	end
 end
 

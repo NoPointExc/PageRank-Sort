@@ -3,11 +3,11 @@ TODO:may lose requests
  */
 
 
-module requester   #(parameter WIDTH=12)
+module requester   #(parameter WIDTH=11)
  (input clk, input reset, 
 input full, input almost_full, 
 input [1:0] id,
-input [5:0] request,
+input [6:0] request,
 output reg [WIDTH-1:0] dataOut, output reg write //To NoC
 );
 
@@ -25,19 +25,20 @@ reg valid;
 //request 0~15, dest=0, 16~31, dest=1, 32~47, dest=2, 48~63 dest=3
 //dest=request/16;
 always@(*)begin
-	valid=1; //new request
-	if(request<16)begin
+	valid=request[0]; //new request
+	if(request[6:1]<16)begin
 		dest=0;
 	end
-	else if(request<32)begin
+	else if(request[6:1]<32)begin
 		dest=1;
 	end
-	else if(request<48)begin
+	else if(request[6:1]<48)begin
 		dest=2;
 	end
 	else begin
 		dest=3;
 	end
+
 end
 
 always @(*)begin
@@ -57,7 +58,7 @@ always @(posedge clk or posedge reset) begin
 		end
 		else begin //issue a request
 			write <=1'b1;
-			dataOut<={request,id,dest,valid};
+			dataOut<={request[6:1],id,dest,valid};
 			valid<=0; //send out, cancel request
 		end
 	end

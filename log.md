@@ -99,10 +99,27 @@ vals loses output
 
 12/12/2015  11:59 PM
 ----------------------
-1)vals updatas, but not converage
+issue 1)vals updatas, but not converage
 possible issue: 
 1) vals not synchronized >> add syc signal? (X)
 synchronized. but still not converage.
 possible issue: 
 2) change to v1 page update. use next_val, cur_val
 3) Width too small
+
+issue 2)change to v1, no more update, block not released
+
+
+3) can't request 2 or more page in one cycles
+
+
+converage but wrong vals.
+
+
+12/12/2015  11:59 PM
+----------------------
+
+node_val_next should return to initial value each clk
+
+
+time= 171, next_val0,878 (接近)收到一个response-->>1313 （错）
