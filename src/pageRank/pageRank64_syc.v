@@ -5,13 +5,14 @@ TODO:
 -3) sort
 -4)sort ID
  */
-module pageRank #(parameter M=64, WIDTH=16)
+module pageRank #(parameter M=64, WIDTH=32)
 (input clk,
 input reset,
 input [M*M-1:0]adj,
 input [M*WIDTH-1:0]nodeWeight,
 output  [10*WIDTH-1:0]top10Vals,
-output  [10*6-1:0] top10IDs
+output  [10*6-1:0] top10IDs,
+output sorted
 );
 parameter N=16,RESP_W=WIDTH+6+3,REQ_W=11,DEPTH=16,MAX_UPDATE_TIME=40;
 wire [5:0] query [3:0];
@@ -99,7 +100,7 @@ endgenerate
 
 
 top10 # (WIDTH,M) sortvals
-(clk&done,reset,done,array_in, top10Vals, top10IDs);
+(clk&done,reset,done,array_in, top10Vals, top10IDs,sorted);
 
 
 

@@ -5,7 +5,7 @@ TODO:
 module top10
 # (parameter  DATA_WIDTH= 16, NUM_WORDS = 16)
 (input clk,input rst, input enable,input [DATA_WIDTH*NUM_WORDS-1:0] array_in,
-output  [DATA_WIDTH*10-1:0] array_out, output  [6*10-1:0] id_out);
+output  [DATA_WIDTH*10-1:0] array_out, output  [6*10-1:0] id_out,output reg sorted);
 
 
 integer j,k,l,m;
@@ -50,13 +50,13 @@ always @(posedge clk or posedge rst) begin
 		 p<=NUM_WORDS-1;
 		 head<=0;
 		 max<=NUM_WORDS-1;
+		 sorted=1'b0;
 		 for(n=0;n<NUM_WORDS;n=n+1)begin
 		 	ID[n]<=n;
 		 	//$display($time,"ID[n]=%d",ID[n]);
 		 end
 	end
 	else if(enable) begin
-		 
 		 if(head<10)begin
 			 if(p>head)begin
 			 	if(array[p]>array[max])begin
@@ -77,6 +77,9 @@ always @(posedge clk or posedge rst) begin
 			 	ID[head]<=ID[max];
 			 	ID[max]<=ID[head];
 			 end
+		 end
+		 else begin
+		 	sorted=1'b1;
 		 end
 
 	end
